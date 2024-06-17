@@ -1,5 +1,6 @@
 package com.dgmarkt.stepDefs;
 
+import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.After;
@@ -12,10 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
+
     @Before
     public void setUp(){
         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.get().manage().window().maximize();
+
     }
 
     @After
