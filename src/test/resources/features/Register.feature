@@ -1,6 +1,5 @@
 Feature: As a user, I should be able to register on the website.
 
-  @wip
   Scenario Outline: Positive Register Test
     Given The user is on the Home page
     When The user navigates to the Register page

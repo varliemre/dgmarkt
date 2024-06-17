@@ -42,4 +42,5 @@ public class Register_StepDefs {
         Assert.assertEquals(expectedResult, actualResult);
         registerPage.afterRegisterContinueBtn.click();
     }
+
 }
