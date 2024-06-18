@@ -1,6 +1,8 @@
 package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
+import com.dgmarkt.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -43,7 +45,15 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//h2[text()='Your Account Has Been Created!']")
     public WebElement successRegisterMsg;
 
-    public void register(String firstName,String lastName,String email,String telephone, String password,String confirmPassword){
+    @FindBy(xpath = "//span[text()=' Warning: You must agree to the Privacy Policy!']")
+    public WebElement subWarningMsg;
+
+    @FindBy(xpath = "//div[contains(@class, 'text-danger')]")
+    public WebElement errorMessage;
+
+
+
+    public void register(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
 
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);

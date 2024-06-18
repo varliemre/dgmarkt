@@ -43,4 +43,27 @@ public class Register_StepDefs {
         registerPage.afterRegisterContinueBtn.click();
     }
 
+    @And("The user clicks on the continue without filling in the required fields.")
+    public void theUserClicksOnTheContinueWithoutFillingInTheRequiredFields() {
+        registerPage.continueBtn.click();
+
+    }
+
+    @Then("Verify that the user cannot register")
+    public void verifyThatTheUserCannotRegister() {
+        String expectedWarningMessage = "Warning: You must agree to the Privacy Policy!";
+        String actaulWarningMessage = registerPage.subWarningMsg.getText();
+        System.out.println("actaulWarningMessage = " + actaulWarningMessage);
+        Assert.assertEquals(expectedWarningMessage,actaulWarningMessage);
+
+    }
+
+    @Then("Verify that error message {string}")
+    public void verifyThatErrorMessage(String expectedErrorMsg) {
+        String actualErrorMsg = registerPage.errorMessage.getText();
+        System.out.println("actualErrorMsg = " + actualErrorMsg);
+        System.out.println("expectedErrorMsg = " + expectedErrorMsg);
+        Assert.assertEquals(expectedErrorMsg,actualErrorMsg);
+
+    }
 }
