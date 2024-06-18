@@ -1,5 +1,6 @@
 
 Feature: User Login Test
+
   @wip
   Scenario Outline: Successful login with valid credentials
     Given The user is on the login page
@@ -7,8 +8,8 @@ Feature: User Login Test
     And The user clicks on the login button
     Then The user should see the message that you have successfully logged in
     Examples:
-      | email                | password   |
-      | adminlast9@gmail.com | admin98765 |
+      | email              | password |
+      | ertan986@gmail.com | 123456   |
 
 
 
