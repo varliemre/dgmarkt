@@ -36,7 +36,7 @@ public class Register_StepDefs {
     public void userShouldSeeARegistrationConfirmationMessage() {
 
         String expectedResult = "Your Account Has Been Created!";
-        BrowserUtils.waitForVisibility(registerPage.successRegisterMsg,2);
+        BrowserUtils.waitForVisibility(registerPage.successRegisterMsg, 2);
         String actualResult = registerPage.successRegisterMsg.getText();
         System.out.println("actualResult = " + actualResult);
         Assert.assertEquals(expectedResult, actualResult);
@@ -52,9 +52,9 @@ public class Register_StepDefs {
     @Then("Verify that the user cannot register")
     public void verifyThatTheUserCannotRegister() {
         String expectedWarningMessage = "Warning: You must agree to the Privacy Policy!";
-        String actaulWarningMessage = registerPage.subWarningMsg.getText();
+        String actaulWarningMessage = registerPage.privacyPolicyErrorMsg.getText();
         System.out.println("actaulWarningMessage = " + actaulWarningMessage);
-        Assert.assertEquals(expectedWarningMessage,actaulWarningMessage);
+        Assert.assertEquals(expectedWarningMessage, actaulWarningMessage);
 
     }
 
@@ -63,7 +63,47 @@ public class Register_StepDefs {
         String actualErrorMsg = registerPage.errorMessage.getText();
         System.out.println("actualErrorMsg = " + actualErrorMsg);
         System.out.println("expectedErrorMsg = " + expectedErrorMsg);
-        Assert.assertEquals(expectedErrorMsg,actualErrorMsg);
+        Assert.assertEquals(expectedErrorMsg, actualErrorMsg);
 
+    }
+
+    @And("The user enters the password {string}")
+    public void theUserEntersThePassword(String password) {
+        registerPage.registerPasswordInput.sendKeys(password);
+
+    }
+
+    @And("The user enters the same password {string} in the confirm password field")
+    public void theUserEntersTheSamePasswordInTheConfirmPasswordField(String confirmPassword) {
+        registerPage.registerConfirmPasswordInput.sendKeys(confirmPassword);
+    }
+
+    @Then("The password should be encrypted and displayed as {string} in the input fields")
+    public void thePasswordShouldBeEncryptedAndDisplayedAsInTheInputFields(String expectedDisplay) {
+        String actualPasswordType = registerPage.registerPasswordInput.getAttribute("type");
+        System.out.println("actualPasswordType = " + actualPasswordType);
+
+        Assert.assertEquals("password", actualPasswordType);   // Tarayıcı, bir input alanının type özniteliği "password" olduğunda bu alanı yıldız karakterleri ile gösterir.
+
+        String actualConfirmPasswordType = registerPage.registerConfirmPasswordInput.getAttribute("type");
+        System.out.println("actualConfirmPasswordType = " + actualConfirmPasswordType);
+
+        Assert.assertEquals("password", actualConfirmPasswordType); // Tarayıcı, bir input alanının type özniteliği "password" olduğunda bu alanı yıldız karakterleri ile gösterir.
+    }
+
+
+    @Then("Verify that Email already registered error message {string}")
+    public void verifyThatEmailAlreadyRegisteredErrorMessage(String expectedErrorMsg) {
+        String actualErrorMsg = registerPage.registeredEmailErrorMsg.getText();
+        Assert.assertEquals(expectedErrorMsg, actualErrorMsg);
+
+    }
+
+    @Then("The user should see an error message {string}")
+    public void theUserShouldSeeAnErrorMessage(String expectedInvalidEmailErrorMsg) {
+        String actualInvalidEmailErrorMsg = registerPage.errorMessage.getText();
+        System.out.println("actualInvalidEmailErrorMsg = " + actualInvalidEmailErrorMsg);
+        System.out.println("expectedInvalidEmailErrorMsg = " + expectedInvalidEmailErrorMsg);
+        Assert.assertEquals(expectedInvalidEmailErrorMsg, actualInvalidEmailErrorMsg);
     }
 }

@@ -46,7 +46,10 @@ public class RegisterPage extends BasePage {
     public WebElement successRegisterMsg;
 
     @FindBy(xpath = "//span[text()=' Warning: You must agree to the Privacy Policy!']")
-    public WebElement subWarningMsg;
+    public WebElement privacyPolicyErrorMsg;
+
+    @FindBy(xpath = "//span[normalize-space()='Warning: E-Mail Address is already registered!']")
+    public WebElement registeredEmailErrorMsg;
 
     @FindBy(xpath = "//div[contains(@class, 'text-danger')]")
     public WebElement errorMessage;
