@@ -54,7 +54,7 @@ Feature: As a user, I should be able to register on the website.
   Scenario Outline:  Registering with an already used email
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then Verify that Email already registered error message "<error message>"
-    Examples:
+  Examples:
       | First Name | Last Name | E-Mail               | Telephone  | Password | Password Confirm | error message                                  |
       | admin8     | last      | adminlast8@gmail.com | 0123456789 | admin123 | admin123         | Warning: E-Mail Address is already registered! |
 
@@ -66,7 +66,7 @@ Feature: As a user, I should be able to register on the website.
       | First Name | Last Name | E-Mail              | Telephone  | Password | Password Confirm | error message                                  |
       | Johny      | Depp      | johnydepp@gmail.com | 0123456789 | John123  | abc123           | Password confirmation does not match password! |
 
-  @wip
+
   Scenario Outline:  Registering with different email formats
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then The user should see an error message "<errorMessage>"
@@ -89,6 +89,18 @@ Feature: As a user, I should be able to register on the website.
       | Johny      | Dep       | username@domain.co_m       | 0123456789 | John123  | John123          | E-Mail Address does not appear to be valid! |
       | Johny      | Dep       | username@domain.com..      | 0123456789 | John123  | John123          | E-Mail Address does not appear to be valid! |
       | Johny      | Dep       | username@gmail,com         | 0123456789 | John123  | John123          | E-Mail Address does not appear to be valid! |
+
+  @wip
+  Scenario Outline: Registering with invalid phone number lengths and characters
+    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
+    Then Verify that error message "<error message>"
+    Examples:
+      | First Name | Last Name | E-Mail              | Telephone                         | Password | Password Confirm | error message                                  |
+      | Johny      | Depp      | johnydepp@gmail.com | 12                                | John123  | John123          | Telephone must be between 3 and 32 characters! |
+      | Johny      | Depp      | johnydepp@gmail.com | 123456789123456789123456789123456 | John123  | abc123           | Telephone must be between 3 and 32 characters! |
+      | Johny      | Depp      | johnydepp@gmail.com | 1                                 | John123  | abc123           | Telephone must be between 3 and 32 characters! |
+      #| Johny      | Depp      | johnydepp@gmail.com | asdf                              | John123  | abc123           | Telephone must be between 3 and 32 characters! |
+      #| Johny      | Depp      | johnydepp@gmail.com | qwertzuiopüasdfghjklöäyxcvbnmqwe  | John123  | abc123           | Telephone must be between 3 and 32 characters! |
 
 
 
