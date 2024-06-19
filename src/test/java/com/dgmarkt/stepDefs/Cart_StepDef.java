@@ -4,12 +4,10 @@ import com.dgmarkt.pages.CartPage;
 import com.dgmarkt.pages.LoginPage;
 import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.utilities.BrowserUtils;
-import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 
 public class Cart_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -32,6 +30,31 @@ public class Cart_StepDef {
     public void the_user_selects_a(String categoryName) {
 
         cartPage.select_Category(categoryName);
+    }
+
+    @When("The user selects a {string} from the categories")
+    public void the_user_selects_a_from_the_categories(String product) {
+
+        cartPage.select_product(product);
+
+
+    }
+    @When("The User clicks add to cart")
+    public void the_user_clicks_add_to_cart() {
+     cartPage.add_to_cart();
+
+    }
+    @Then("Verifies the {string} that the relevant product has been added to the cart")
+    public void verifies_the_that_the_relevant_product_has_been_added_to_the_cart(String expectesMessage) {
+        String actualMessage= cartPage.success_add_to_Cart_Msg.getText();
+        BrowserUtils.waitFor(10);
+        System.out.println("expectesMessage = " + expectesMessage);
+        System.out.println("actualMessage = " + actualMessage);
+
+        Assert.assertTrue(actualMessage.contains(expectesMessage));
+cartPage.navigateMyAccount("Logout");
+
+
     }
 
 
