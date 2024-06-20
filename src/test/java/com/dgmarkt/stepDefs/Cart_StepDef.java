@@ -40,7 +40,7 @@ public class Cart_StepDef {
 
     }
     @When("The User clicks add to cart")
-    public void the_user_clicks_add_to_cart() {
+    public void the_user_clicks_add_to_cart() throws InterruptedException {
      cartPage.add_to_cart();
 
     }

@@ -22,11 +22,56 @@ public class CheckoutPage extends BasePage {
     public WebElement shoppingCart_l;
 
 
-    @FindBy(css = "[class='fa fa-shopping-cart']")
+    @FindBy(xpath = "//*[.=' View Cart']")
     public WebElement viewCart_l;
 
     @FindBy(xpath = "//div[@id='content']//table[@class='table table-bordered']//tbody//td[@class='text-left'][1]")
     public List<String> product_list_l;
+
+    @FindBy(xpath = "//a[.='Estimate Shipping & Taxes ']")
+    public WebElement shipping_l;
+
+    @FindBy(css = "[id='input-country']")
+    public WebElement country_l;
+
+    @FindBy(css = "[id='input-zone']")
+    public WebElement inputZone_l;
+    @FindBy(css = "[id='input-postcode']")
+    public WebElement postcode_l;
+    @FindBy(css = "[id='button-quote']")
+    public WebElement button_quote_l;
+
+    @FindBy(css = "[type='radio']")
+    public WebElement flat_radioBtn_l;
+    @FindBy(css = "[id='button-shipping']")
+    public WebElement apply_shipping_btn_l;
+    @FindBy(css = "[class='alert alert-success alert-dismissible']")
+    public WebElement allert_succes_l;
+
+    @FindBy(xpath = "//a[.='Checkout']")
+    public WebElement checkout_btn_l;
+
+    @FindBy(css = "[value='Continue']")
+    public WebElement billing_continue_btn_l;
+    @FindBy(css = "[id='button-shipping-address']")
+    public WebElement delivery_continue_btn_l;
+
+    @FindBy(css = "[name='comment']")
+    public WebElement order_comment_l;
+
+    @FindBy(css = "[type='checkbox']")
+    public WebElement term_condition_btn_l;
+    @FindBy(css = "[id='button-confirm']")
+    public WebElement confirm_oreder_btn_l;
+
+   @FindBy(xpath = "(//*[.='Your order has been placed!'])[2]")
+   public WebElement ceckout_confirmation_msg_l;
+
+
+
+
+
+
 
     public void click_cart_Ikon() {
 

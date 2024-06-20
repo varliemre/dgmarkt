@@ -9,9 +9,9 @@ Feature: Cart Icon function
     And The User clicks add to cart
     Then Verifies the "<message>" that the relevant product has been added to the cart
     Examples:
-      | email              | password | subcategory     | product                       | message                 |
-      #| ertan986@gmail.com | 123456   | Health & Beauty | eufy C1 Smart Scale White| Success: You have added |
-      | ertan986@gmail.com | 123456   | Televisions     | Cello C4020DVB 40\" LED-backlit LCD TV                    | Success: You have added |
-      #| ertan986@gmail.com | 123456   | TV Accessories  | Belkin High Speed HDMI Cable with Ethernet                | Success: You have added |
-      #| ertan986@gmail.com | 123456   | Networking      | ASUS ZenWiFi XD6 - Wi-Fi system (2 routers)               | Success: You have added |
-  ä
+      | email              | password | subcategory     | product                                     | message                 |
+      | ertan986@gmail.com | 123456   | Health & Beauty | eufy C1 Smart Scale White                   | Success: You have added |
+     #| ertan986@gmail.com | 123456   | Televisions     | Cello C4020DVB 40\" LED-backlit LCD TV      | Success: You have added |
+      #| ertan986@gmail.com | 123456   | TV Accessories  | Belkin High Speed HDMI Cable with Ethernet  | Success: You have added |
+      #| ertan986@gmail.com | 123456   | Networking      | ASUS ZenWiFi XD6 - Wi-Fi system (2 routers) | Success: You have added |
+
