@@ -14,3 +14,4 @@ Feature: Cart Icon function
       | ertan986@gmail.com | 123456   | Televisions     | Cello C4020DVB 40\" LED-backlit LCD TV                    | Success: You have added |
       #| ertan986@gmail.com | 123456   | TV Accessories  | Belkin High Speed HDMI Cable with Ethernet                | Success: You have added |
       #| ertan986@gmail.com | 123456   | Networking      | ASUS ZenWiFi XD6 - Wi-Fi system (2 routers)               | Success: You have added |
+  ä
