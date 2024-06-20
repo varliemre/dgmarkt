@@ -37,26 +37,29 @@ public class CartPage extends BasePage {
     }
 
     public void select_product(String productName)  {
-        Select select=new Select(show_konteyner);
-        BrowserUtils.waitFor(10);
-        select.selectByVisibleText("100");
+       Select select=new Select(show_konteyner);
+       BrowserUtils.waitFor(11);
+    select.selectByVisibleText("100");
 
-
+        BrowserUtils.waitFor(32);
 
         WebElement productLocator = Driver.get().findElement(By.xpath("//h4[.='"+productName+"']"));
 
-        BrowserUtils.waitForClickablility(productLocator, 20);
+
 
 // JavaScriptExecutor ile elementin görünür olmasını sağla
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript("arguments[0].scrollIntoView(true);", productLocator);
+        Driver.get().navigate().refresh();
 
 // Beklemeyi bir süre daha uzat, tıklanabilir olmasını bekle
-        BrowserUtils.waitFor(1); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
+        BrowserUtils.waitFor(32); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
+
 
         try {
             productLocator.click();
         } catch (ElementClickInterceptedException e) {
+            BrowserUtils.waitFor(5);
             // Eğer tıklama başarısız olursa, JavaScript kullanarak tıklamayı deneyin
             jse.executeScript("arguments[0].click();", productLocator);
         }
@@ -67,14 +70,14 @@ public class CartPage extends BasePage {
 
     public void add_to_cart() {
        WebElement add_to_cart_l = Driver.get().findElement(By.id("button-cart"));
-        BrowserUtils.waitForClickablility(add_to_cart_l, 20);
+        BrowserUtils.waitForClickablility(add_to_cart_l, 11);
 
 // JavaScriptExecutor ile elementin görünür olmasını sağla
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-        jse.executeScript("arguments[0].scrollIntoView(true);", add_to_cart_l);
+      jse.executeScript("arguments[0].scrollIntoView(true);", add_to_cart_l);
 
 // Beklemeyi bir süre daha uzat, tıklanabilir olmasını bekle
-        BrowserUtils.waitFor(1); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
+        BrowserUtils.waitFor(32); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
 
         try {
             add_to_cart_l.click();
