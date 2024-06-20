@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com/dgmarkt/stepDefs",
-        dryRun = false,
-        tags = "@wip"
+        dryRun = true,
+        tags = "@Address"
 )
 public class CukesRunner {
 }
