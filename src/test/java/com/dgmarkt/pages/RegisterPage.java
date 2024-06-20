@@ -70,5 +70,19 @@ public class RegisterPage extends BasePage {
 
     }
 
+    public void registerWithoutPrivacyPolicy(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
+
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        emailInput.sendKeys(email);
+        telephoneInput.sendKeys(telephone);
+        registerPasswordInput.sendKeys(password);
+        registerConfirmPasswordInput.sendKeys(confirmPassword);
+        subscribeNoBtn.click();
+        //privacyPolicyCheckBoxBtn.click();
+        continueBtn.click();
+
+    }
+
 
 }

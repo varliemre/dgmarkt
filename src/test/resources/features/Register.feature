@@ -30,42 +30,17 @@ Feature: As a user, I should be able to register on the website.
       | admin9     | last      | adminlast9@gmail.com | 01798659885 | admin98765 |                  | Password confirmation does not match password!  |
 
 
-  Scenario Outline: The user should be able to enter the password field between 4 and 20 characters.
+  Scenario Outline: Registering with invalid first name and last name lengths
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then Verify that error message "<error message>"
     Examples:
-      | First Name | Last Name | E-Mail                 | Telephone  | Password                                           | Password Confirm                                  | error message                                 |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 12                                                 | 12                                                | Password must be between 4 and 20 characters! |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ab                                                 | ab                                                | Password must be between 4 and 20 characters! |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ab1                                                | ab1                                               | Password must be between 4 and 20 characters! |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | .,#                                                | .,#                                               | Password must be between 4 and 20 characters! |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 1a,                                                | 1a,                                               | Password must be between 4 and 20 characters! |
-      #| Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 01234567890123456789012345123456789                | 01234567890123456789012345123456789               | Password must be between 4 and 20 characters! |
-      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ThisIsAVeryLongPasswordThatExceedsTwentyCharacters | hisIsAVeryLongPasswordThatExceedsTwentyCharacters | Password must be between 4 and 20 characters! |
-
-      #The maximum character limit is 36, not 20.
-
-  Scenario: The User Registration Password Security
-    And The user enters the password "MySecretPassword"
-    And The user enters the same password "MySecretPassword" in the confirm password field
-    Then The password should be encrypted and displayed as "***" in the input fields
-
-
-  Scenario Outline:  Registering with an already used email
-    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
-    Then Verify that Email already registered error message "<error message>"
-  Examples:
-      | First Name | Last Name | E-Mail               | Telephone  | Password | Password Confirm | error message                                  |
-      | admin8     | last      | adminlast8@gmail.com | 0123456789 | admin123 | admin123         | Warning: E-Mail Address is already registered! |
-
-
-  Scenario Outline: User Registration with Different Password and Confirm Password
-    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
-    Then Verify that error message "<error message>"
-    Examples:
-      | First Name | Last Name | E-Mail              | Telephone  | Password | Password Confirm | error message                                  |
-      | Johny      | Depp      | johnydepp@gmail.com | 0123456789 | John123  | abc123           | Password confirmation does not match password! |
-
+      | First Name                        | Last Name                          | E-Mail              | Telephone   | Password | Password Confirm | error message                                   |
+      |                                   | Depp                               | johnydepp@gmail.com | 03123409898 | John123  | John123          | First Name must be between 1 and 32 characters! |
+      | Johny                             |                                    | johnydepp@gmail.com | 03123409898 | John123  | John123          | Last Name must be between 1 and 32 characters!  |
+      | Johnyyyyyyyyyyyyyyyyyyyyyyyyyyyyy | Depp                               | johnydepp@gmail.com | 03123409898 | John123  | John123          | First Name must be between 1 and 32 characters! |
+      | Johny                             | Depppppppppppppppppppppppppppppppp | johnydepp@gmail.com | 03123409898 | John123  | John123          | Last Name must be between 1 and 32 characters!  |
+      | Johnyyyyyyyyyyyyyyyyyyyyyyyyyyyyy | Depppppppppppppppppppppppppppppppp | johnydepp@gmail.com | 03123409898 | John123  | John123          | First Name must be between 1 and 32 characters! |
+      #| *****                             | *****                              | johnydepp@gmail.com | 03123409898 | John123  | John123          | First Name must be between 1 and 32 characters! |
 
   Scenario Outline:  Registering with different email formats
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
@@ -90,7 +65,13 @@ Feature: As a user, I should be able to register on the website.
       | Johny      | Dep       | username@domain.com..      | 0123456789 | John123  | John123          | E-Mail Address does not appear to be valid! |
       | Johny      | Dep       | username@gmail,com         | 0123456789 | John123  | John123          | E-Mail Address does not appear to be valid! |
 
-  @wip
+  Scenario Outline:  Registering with an already used email
+    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
+    Then Verify that Email already registered error message "<error message>"
+    Examples:
+      | First Name | Last Name | E-Mail               | Telephone  | Password | Password Confirm | error message                                  |
+      | admin8     | last      | adminlast8@gmail.com | 0123456789 | admin123 | admin123         | Warning: E-Mail Address is already registered! |
+
   Scenario Outline: Registering with invalid phone number lengths and characters
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then Verify that error message "<error message>"
@@ -101,6 +82,51 @@ Feature: As a user, I should be able to register on the website.
       | Johny      | Depp      | johnydepp@gmail.com | 1                                 | John123  | abc123           | Telephone must be between 3 and 32 characters! |
       #| Johny      | Depp      | johnydepp@gmail.com | asdf                              | John123  | abc123           | Telephone must be between 3 and 32 characters! |
       #| Johny      | Depp      | johnydepp@gmail.com | qwertzuiopüasdfghjklöäyxcvbnmqwe  | John123  | abc123           | Telephone must be between 3 and 32 characters! |
+
+  Scenario Outline: The user should be able to enter the password field between 4 and 20 characters.
+    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
+    Then Verify that error message "<error message>"
+    Examples:
+      | First Name | Last Name | E-Mail                 | Telephone  | Password                                           | Password Confirm                                  | error message                                 |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 12                                                 | 12                                                | Password must be between 4 and 20 characters! |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ab                                                 | ab                                                | Password must be between 4 and 20 characters! |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ab1                                                | ab1                                               | Password must be between 4 and 20 characters! |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | .,#                                                | .,#                                               | Password must be between 4 and 20 characters! |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 1a,                                                | 1a,                                               | Password must be between 4 and 20 characters! |
+      #| Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | 01234567890123456789012345123456789                | 01234567890123456789012345123456789               | Password must be between 4 and 20 characters! |
+      | Saul       | Berenson  | saulberenson@gmail.com | 0123456789 | ThisIsAVeryLongPasswordThatExceedsTwentyCharacters | hisIsAVeryLongPasswordThatExceedsTwentyCharacters | Password must be between 4 and 20 characters! |
+
+      #The maximum character limit is 36, not 20.
+
+  Scenario: The User Registration Password Security
+    And The user enters the password "MySecretPassword"
+    And The user enters the same password "MySecretPassword" in the confirm password field
+    Then The password should be encrypted and displayed as "***" in the input fields
+
+
+  Scenario Outline: User Registration with Different Password and Confirm Password
+    And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
+    Then Verify that error message "<error message>"
+    Examples:
+      | First Name | Last Name | E-Mail              | Telephone  | Password | Password Confirm | error message                                  |
+      | Johny      | Depp      | johnydepp@gmail.com | 0123456789 | John123  | abc123           | Password confirmation does not match password! |
+
+
+  @wip
+  Scenario Outline:  Registering without accepting the Privacy Policy
+    When The user fills out the registration form without accepting the privacy policy "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
+    Then The user should see an Privacy Policy Error Message "<error message>"
+    Examples:
+      | First Name | Last Name | E-Mail           | Telephone   | Password  | Password Confirm | error message                                  |
+      | Joe        | Doe       | joedoe@gmail.com | 02126549887 | joedoe123 | joedoe123        | Warning: You must agree to the Privacy Policy! |
+
+
+
+
+
+
+
+
 
 
 

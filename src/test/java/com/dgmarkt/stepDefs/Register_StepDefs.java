@@ -106,4 +106,18 @@ public class Register_StepDefs {
         System.out.println("expectedInvalidEmailErrorMsg = " + expectedInvalidEmailErrorMsg);
         Assert.assertEquals(expectedInvalidEmailErrorMsg, actualInvalidEmailErrorMsg);
     }
+
+    @When("The user fills out the registration form without accepting the privacy policy {string} und {string} und {string} {string} und {string} und {string}")
+    public void theUserFillsOutTheRegistrationFormWithoutAcceptingThePrivacyPolicyUndUndUndUnd(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
+
+        registerPage.registerWithoutPrivacyPolicy(firstName, lastName, email, telephone, password, confirmPassword);
+    }
+
+    @Then("The user should see an Privacy Policy Error Message {string}")
+    public void theUserShouldSeeAnPrivacyPolicyErrorMessage(String expectedPrivacyPolicyErrorMsg) {
+        String actualPrivacyPolicyErrorMsg = registerPage.privacyPolicyErrorMsg.getText();
+        System.out.println("actualPrivacyPolicyErrorMsg = " + actualPrivacyPolicyErrorMsg);
+        Assert.assertEquals(expectedPrivacyPolicyErrorMsg,actualPrivacyPolicyErrorMsg);
+
+    }
 }
