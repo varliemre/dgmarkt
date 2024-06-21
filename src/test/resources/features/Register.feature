@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to register on the website.
 
   Background:
@@ -8,8 +9,8 @@ Feature: As a user, I should be able to register on the website.
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then User should see a registration confirmation message
     Examples:
-      | First Name | Last Name | E-Mail               | Telephone   | Password   | Password Confirm |
-      | admin9     | last      | adminlast9@gmail.com | 01798659885 | admin98765 | admin98765       |
+      | First Name | Last Name | E-Mail                | Telephone    | Password   | Password Confirm |
+      | admin11    | last      | adminlast11@gmail.com | 017911659885 | admin98765 | admin98765       |
 
 
   Scenario:  Registration with all fields left blank
@@ -112,13 +113,27 @@ Feature: As a user, I should be able to register on the website.
       | Johny      | Depp      | johnydepp@gmail.com | 0123456789 | John123  | abc123           | Password confirmation does not match password! |
 
 
-  @wip
   Scenario Outline:  Registering without accepting the Privacy Policy
     When The user fills out the registration form without accepting the privacy policy "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then The user should see an Privacy Policy Error Message "<error message>"
     Examples:
       | First Name | Last Name | E-Mail           | Telephone   | Password  | Password Confirm | error message                                  |
       | Joe        | Doe       | joedoe@gmail.com | 02126549887 | joedoe123 | joedoe123        | Warning: You must agree to the Privacy Policy! |
+
+    @wip
+  Scenario: Navigating through controls using the "Tab" key
+    When The user clicks on the First Name field
+    And The user presses the Tab key
+    Then Verify that the cursor is in the email field with the "input-lastname" id
+    When The user presses the Tab key
+    Then Verify that the cursor is in the email field with the "input-register-email" id
+    When The user presses the Tab key
+    Then Verify that the cursor is in the email field with the "input-telephone" id
+    When The user presses the Tab key
+    Then Verify that the cursor is in the email field with the "input-register-password" id
+    When The user presses the Tab key
+    Then Verify that the cursor is in the email field with the "input-confirm" id
+
 
 
 

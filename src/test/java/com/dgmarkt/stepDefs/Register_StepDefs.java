@@ -3,11 +3,14 @@ package com.dgmarkt.stepDefs;
 import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.pages.RegisterPage;
 import com.dgmarkt.utilities.BrowserUtils;
+import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 public class Register_StepDefs {
 
@@ -117,7 +120,26 @@ public class Register_StepDefs {
     public void theUserShouldSeeAnPrivacyPolicyErrorMessage(String expectedPrivacyPolicyErrorMsg) {
         String actualPrivacyPolicyErrorMsg = registerPage.privacyPolicyErrorMsg.getText();
         System.out.println("actualPrivacyPolicyErrorMsg = " + actualPrivacyPolicyErrorMsg);
-        Assert.assertEquals(expectedPrivacyPolicyErrorMsg,actualPrivacyPolicyErrorMsg);
+        Assert.assertEquals(expectedPrivacyPolicyErrorMsg, actualPrivacyPolicyErrorMsg);
 
+    }
+
+    @When("The user clicks on the First Name field")
+    public void theUserClicksOnTheFirstNameField() {
+        registerPage.firstNameInput.click();
+    }
+
+    @And("The user presses the Tab key")
+    public void theUserPressesTheTabKey() {
+        WebElement activeElement = Driver.get().switchTo().activeElement();
+        activeElement.sendKeys(Keys.TAB);
+    }
+
+
+    @Then("Verify that the cursor is in the email field with the {string} id")
+    public void verifyThatTheCursorIsInTheEmailFieldWithTheId(String expectedID) {
+        WebElement activeElement = Driver.get().switchTo().activeElement();
+        String actualID = activeElement.getAttribute("id");
+        Assert.assertEquals(expectedID, actualID);
     }
 }
