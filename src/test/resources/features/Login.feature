@@ -3,8 +3,6 @@ Feature: User Login Test
 
 
   @wip
-
-main
   Scenario Outline: Successful login with valid credentials
     Given The user is on the login page
     When The user enters a valid "<email>" and "<password>"
