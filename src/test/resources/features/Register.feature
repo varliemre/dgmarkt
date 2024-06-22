@@ -120,7 +120,7 @@ Feature: As a user, I should be able to register on the website.
       | First Name | Last Name | E-Mail           | Telephone   | Password  | Password Confirm | error message                                  |
       | Joe        | Doe       | joedoe@gmail.com | 02126549887 | joedoe123 | joedoe123        | Warning: You must agree to the Privacy Policy! |
 
-    @wip
+  @wip
   Scenario: Navigating through controls using the "Tab" key
     When The user clicks on the First Name field
     And The user presses the Tab key
