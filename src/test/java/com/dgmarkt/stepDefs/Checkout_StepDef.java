@@ -73,8 +73,10 @@ public class Checkout_StepDef {
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript("arguments[0].scrollIntoView(true);", checkoutPage.checkout_btn_l);
-        checkoutPage.checkout_btn_l.click();
-        BrowserUtils.waitForClickablility(checkoutPage.checkout_btn_l, 55);
+        BrowserUtils.waitFor(30);
+        BrowserUtils.clickWithJS(checkoutPage.checkout_btn_l);
+        //checkoutPage.checkout_btn_l.click();
+        BrowserUtils.waitForClickablility(checkoutPage.checkout_btn_l, 60);
 
     }
 
@@ -188,5 +190,17 @@ public class Checkout_StepDef {
     public void fillInTheDeliveryAddressFormOnThePageThatOpensAndClickContinue(String firstName, String lastName, String Address1,
                                                                                String City, String PostCode) {
         checkoutPage.delivery_adress_list_fill(firstName, lastName, Address1, City, PostCode);
+    }
+
+    @And("Fill in the billing address form {string}  {string},{string} ,{string} ,{string} and {string}  on the page that opens and click continue")
+    public void fillInTheBillingAddressFormAndOnThePageThatOpensAndClickContinue(String firstName, String lastName, String Address1,
+                                                                                 String City, String PostCode,String warnungMesg) {
+        checkoutPage.invalid_billing_adress_list_fill(firstName, lastName, Address1, City, PostCode, warnungMesg);
+    }
+
+    @And("Fill in the delivery address form {string}  {string},{string} ,{string} ,{string} and {string} on the page that opens and click continue")
+    public void fillInTheDeliveryAddressFormAndOnThePageThatOpensAndClickContinue(String firstName, String lastName, String Address1,
+                                                                                  String City, String PostCode,String warnungMesg) {
+        checkoutPage.invalid_delivery_adress_list_fill(firstName, lastName, Address1, City, PostCode, warnungMesg);
     }
 }

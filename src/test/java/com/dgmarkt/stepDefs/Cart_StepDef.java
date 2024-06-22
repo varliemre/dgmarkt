@@ -4,6 +4,8 @@ import com.dgmarkt.pages.CartPage;
 import com.dgmarkt.pages.LoginPage;
 import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.utilities.BrowserUtils;
+import com.dgmarkt.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -58,5 +60,19 @@ cartPage.navigateMyAccount("Logout");
     }
 
 
+    @And("The user removes items from cart")
+    public void theUserRemovesItemsFromCart() {
+        BrowserUtils.waitFor(20);
+        Driver.get().navigate().refresh();
+        cartPage.removeAllItemsFromCart();
 
+    }
+
+    @Then("user verifies that the basket is empty")
+    public void userVerifiesThatTheBasketIsEmpty() {
+        String expectedMsg="Your shopping cart is empty!";
+        String actualMsg=cartPage.cart_emptyMsg.getText();
+        Assert.assertTrue(actualMsg.contains(expectedMsg));
+
+    }
 }

@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import javax.annotation.Nullable;
+import java.time.Duration;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Function;
 
@@ -27,6 +29,8 @@ public class CartPage extends BasePage {
 
     @FindBy(id = "input-limit")
     public WebElement show_konteyner;
+    @FindBy(css = "[id='content']")
+    public WebElement cart_emptyMsg;
 
 
     public void select_Category(String subCatagoryName) {
@@ -52,7 +56,7 @@ public class CartPage extends BasePage {
         BrowserUtils.waitFor(32);
 
         //WebElement productLocator = Driver.get().findElement(By.xpath("//h4[.='" + productName + "']"));
-        WebElement productLocator = Driver.get().findElement( By.xpath("//img[@alt='"+productName+"']"));
+        WebElement productLocator = Driver.get().findElement(By.xpath("//img[@alt='" + productName + "']"));
 
 
 // JavaScriptExecutor ile elementin görünür olmasını sağla
@@ -72,7 +76,6 @@ public class CartPage extends BasePage {
             jse.executeScript("arguments[0].click();", productLocator);
         }
     }
-
 
 
     public void add_to_cart() {
@@ -106,4 +109,39 @@ public class CartPage extends BasePage {
             // Handle any exceptions that occur during the add to cart process
             e.printStackTrace();
             // You might want to log the error or handle it gracefully
-        }}}
+        }
+    }
+
+
+        public void removeAllItemsFromCart() {
+            // Öğeleri bul
+            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+
+            for (int i = 0; i < elements.size(); i++) {
+                // "Kaldır" butonunun tıklanabilir olmasını bekle
+                WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(20));
+                WebElement removeButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-original-title='Remove']")));
+
+                try {
+                    // "Kaldır" butonuna tıkla
+                    removeButton.click();
+
+                    // Kaldırma işlemi tamamlanana kadar bekle
+                    wait.until(ExpectedConditions.stalenessOf(elements.get(i)));
+
+                    // Kalan öğeleri tekrar bul
+                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+                } catch (Exception e) {
+                    // Herhangi bir hata durumunda, öğeleri tekrar bul
+                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+                    // İndeksi ayarla
+                    i--;
+                }
+            }
+        }
+
+        public boolean isCartEmpty() {
+            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+            return elements.isEmpty();
+        }
+    }

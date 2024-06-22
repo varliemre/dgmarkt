@@ -10,8 +10,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +71,6 @@ public class CheckoutPage extends BasePage {
     public WebElement adress_konteyner_delivery_l;
 
 
-
     @FindBy(css = "[name='comment']")
     public WebElement order_comment_l;
 
@@ -86,14 +88,15 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "[id='button-confirm']")
     public WebElement confirm_oreder_btn_l;
 
-   @FindBy(xpath = "(//*[.='Your order has been placed!'])[2]")
-   public WebElement ceckout_confirmation_msg_l;
+    @FindBy(xpath = "(//*[.='Your order has been placed!'])[2]")
+    public WebElement ceckout_confirmation_msg_l;
 
 
     @FindBy(xpath = "((//*[@name='payment_address'])[2])")
     public WebElement I_want_to_use_a_new_billing_address_l;
 
-    @FindBy(xpath = "((//*[@name='shipping_address'])[2]")
+
+    @FindBy(xpath = "(//*[@name='shipping_address'])[2]")
     public WebElement I_want_to_use_a_new_delivery_address_l;
 
     @FindBy(css = "[id='input-payment-firstname']")
@@ -114,25 +117,52 @@ public class CheckoutPage extends BasePage {
     public WebElement country_drop_down;
     @FindBy(css = "[id='input-payment-zone']")
     public WebElement region_drop_down;
+///////////////////////////////////////////////////////////////////////
 
+    @FindBy(css = "[id='input-shipping-firstname']")
+    public WebElement delivery_first_name_l;
+    @FindBy(css = "[id='input-shipping-lastname']")
+    public WebElement delivery_last_name_l;
+
+    @FindBy(css = "[id='input-shipping-address-1']")
+    public WebElement delivery_adresse1_l;
+
+    @FindBy(css = "[id='input-shipping-city']")
+    public WebElement delivery_city_l;
+
+    @FindBy(xpath = "//*[@id='input-shipping-postcode']")
+    public WebElement delivery_post_code_l;
+
+    @FindBy(css = "[id='input-shipping-country']")
+    public WebElement delivery_country_drop_down;
+    @FindBy(css = "[id='input-shipping-zone']")
+    public WebElement delivery_region_drop_down;
+
+    /////////////////////////////////////////////////////////////
+    @FindBy(css = "[class='text-danger']")
+    public WebElement adress_form_error_msg_l;
 
     public void click_cart_Ikon() {
 
         executor.executeScript("arguments[0].click();", cart_l);
-        BrowserUtils.waitForClickablility(cart_l, 2);
+        BrowserUtils.waitForClickablility(cart_l, 15);
         executor.executeScript("arguments[0].click();", viewCart_l);
+        BrowserUtils.waitForClickablility(viewCart_l,30);
+
+        BrowserUtils.clickWithJS(viewCart_l);
+
 
 
     }
 
-    public void produkt_list_in_Checkout(int  amount ,int  quantityy) {
+    public void produkt_list_in_Checkout(int amount, int quantityy) {
 
 
         List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
         BrowserUtils.waitFor(20);
 
         System.out.println("productList.size() = " + elements.size());
-        int amout_product_in_Cart=elements.size();
+        int amout_product_in_Cart = elements.size();
         System.out.println("amout_product_in_Cart = " + amout_product_in_Cart);
         Assert.assertEquals(amount, amout_product_in_Cart);
 
@@ -159,11 +189,12 @@ public class CheckoutPage extends BasePage {
         }
 
         System.out.println("Sepetteki toplam ürün adeti: " + totalQuantity);
-        Assert.assertEquals(quantityy,totalQuantity);
+        Assert.assertEquals(quantityy, totalQuantity);
 
     }
+
     public void billing_adress_list_fill(String firstName, String lastName, String address1,
-                                 String city, String postCode){
+                                         String city, String postCode) {
         first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(5);
         last_name_l.sendKeys(lastName);
@@ -174,10 +205,10 @@ public class CheckoutPage extends BasePage {
         BrowserUtils.waitFor(5);
         post_code_l.sendKeys("34863");
         BrowserUtils.waitFor(5);
-        Select select=new Select(country_drop_down);
+        Select select = new Select(country_drop_down);
         select.selectByVisibleText("Australia");
         BrowserUtils.waitFor(5);
-        Select select1=new Select(region_drop_down);
+        Select select1 = new Select(region_drop_down);
         select1.selectByIndex(3);
         BrowserUtils.waitFor(5);
 
@@ -185,20 +216,23 @@ public class CheckoutPage extends BasePage {
 
 
     }
+
     public void delivery_adress_list_fill(String firstName, String lastName, String address1,
-                                         String city, String postCode){
-        first_name_l.sendKeys(firstName);
+                                          String city, String postCode) {
+        BrowserUtils.waitFor(50);
+        delivery_first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(5);
-        last_name_l.sendKeys(lastName);
+        delivery_last_name_l.sendKeys(lastName);
         BrowserUtils.waitFor(5);
-        adresse1_l.sendKeys(address1);
+        delivery_adresse1_l.sendKeys(address1);
         BrowserUtils.waitFor(5);
-        city_l.sendKeys(city);
-        postcode_l.sendKeys(postCode);
-        Select select=new Select(country_drop_down);
+        delivery_city_l.sendKeys(city);
+        BrowserUtils.waitFor(5);
+        delivery_post_code_l.sendKeys(postCode);
+        Select select = new Select(delivery_country_drop_down);
         select.selectByVisibleText("Australia");
         BrowserUtils.waitFor(5);
-        Select select1=new Select(region_drop_down);
+        Select select1 = new Select(delivery_region_drop_down);
         select1.selectByIndex(3);
         BrowserUtils.waitFor(5);
 
@@ -207,4 +241,61 @@ public class CheckoutPage extends BasePage {
 
     }
 
+    public void invalid_billing_adress_list_fill(String firstName, String lastName, String address1,
+                                                 String city, String postCode, String expected_warnungMsg) {
+        first_name_l.sendKeys(firstName);
+        BrowserUtils.waitFor(5);
+        last_name_l.sendKeys(lastName);
+        BrowserUtils.waitFor(5);
+        adresse1_l.sendKeys(address1);
+        BrowserUtils.waitFor(5);
+        city_l.sendKeys(city);
+        BrowserUtils.waitFor(5);
+        post_code_l.sendKeys("34863");
+        BrowserUtils.waitFor(5);
+        Select select = new Select(country_drop_down);
+        select.selectByVisibleText("Australia");
+        BrowserUtils.waitFor(5);
+        Select select1 = new Select(region_drop_down);
+        select1.selectByIndex(3);
+        BrowserUtils.waitFor(5);
+
+        BrowserUtils.clickWithJS(billing_continue_btn_l);
+        String acturlerrorMsg = adress_form_error_msg_l.getText();
+        String expectedmsg=expected_warnungMsg;
+        System.out.println("expectedmsg = " + expectedmsg);
+        System.out.println("acturlerrorMsg = " + acturlerrorMsg);
+
+        Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
+
+
+    }
+
+    public void invalid_delivery_adress_list_fill(String firstName, String lastName, String address1,
+                                                  String city, String postCode, String expected_warnungMsg) {
+        BrowserUtils.waitFor(30);
+        delivery_first_name_l.sendKeys(firstName);
+        BrowserUtils.waitFor(5);
+        delivery_last_name_l.sendKeys(lastName);
+        BrowserUtils.waitFor(5);
+        delivery_adresse1_l.sendKeys(address1);
+        BrowserUtils.waitFor(5);
+        delivery_city_l.sendKeys(city);
+        BrowserUtils.waitFor(5);
+        delivery_post_code_l.sendKeys(postCode);
+        Select select = new Select(delivery_country_drop_down);
+        select.selectByVisibleText("Australia");
+        BrowserUtils.waitFor(5);
+        Select select1 = new Select(delivery_region_drop_down);
+        select1.selectByIndex(3);
+        BrowserUtils.waitFor(5);
+
+        BrowserUtils.clickWithJS(delivery_continue_btn_l);
+        String acturlerrorMsg = adress_form_error_msg_l.getText();
+        String expectedmsg=expected_warnungMsg;
+        System.out.println("expectedmsg = " + expectedmsg);
+        System.out.println("acturlerrorMsg = " + acturlerrorMsg);
+
+        Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
+    }
 }
