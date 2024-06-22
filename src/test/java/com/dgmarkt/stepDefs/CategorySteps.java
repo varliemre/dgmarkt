@@ -1,6 +1,7 @@
 package com.dgmarkt.stepDefs;
 
 import com.dgmarkt.pages.CategoryPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,18 +10,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.Instant;
 
 public class CategorySteps {
 
     WebDriver driver;
     CategoryPage categoryPage;
 
-    @Given("The user is on the Category Page")
-    public void the_user_is_on_the_category_page() {
+    @Given("The user is on the home page")
+    public void the_user_is_on_the_home_page() {
         System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://dgmarkt.com/");
@@ -50,4 +53,10 @@ public class CategorySteps {
         Assert.assertTrue(expectedElement.isDisplayed());
         driver.quit();
     }
-}
+
+    @And("The user clicks on the {string} Sub-Category tab")
+    public void theUserClicksOnTheSubCategoryTab(String arg0) {
+
+    }
+    }
+

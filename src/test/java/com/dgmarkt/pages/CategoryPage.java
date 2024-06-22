@@ -39,5 +39,11 @@ public class CategoryPage extends BasePage{
         subCategoryTab.click();
     }
 
+
+
+    @FindBy(css = "a.a-mega-second-link[href*='path=59']")
+    WebElement NetworkingTab;
+
+
 }
 
