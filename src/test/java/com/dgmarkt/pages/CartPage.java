@@ -49,13 +49,17 @@ public class CartPage extends BasePage {
     }
 
     public void select_product(String productNAme) {
+        Select select = new Select(show_konteyner);
+        BrowserUtils.waitFor(11);
+        select.selectByVisibleText("100");
+        BrowserUtils.waitFor(5);
 
-        WebElement selectproduct = Driver.get().findElement(By.xpath("//a[.='"+productNAme+"']"));
+        WebElement selectproduct = Driver.get().findElement(By.xpath("//a[.='" + productNAme + "']"));
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript("arguments[0].scrollIntoView(true);", selectproduct);
 
-        BrowserUtils.waitForClickablility(selectproduct, 43);
-        selectproduct.click();
+        BrowserUtils.waitForClickablility(selectproduct, 80);
+       // BrowserUtils.clickWithJS(selectproduct);
         try {
             BrowserUtils.clickWithJS(selectproduct);
         } catch (Exception e) {
@@ -64,9 +68,6 @@ public class CartPage extends BasePage {
         }
         BrowserUtils.waitFor(10);
     }
-
-
-
 
 
     public void add_to_cart() {
@@ -80,7 +81,7 @@ public class CartPage extends BasePage {
 
         try {
             BrowserUtils.clickWithJS(add_to_cart_l);
-            BrowserUtils.waitForClickablility(add_to_cart_l,20);
+            BrowserUtils.waitForClickablility(add_to_cart_l, 20);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -88,37 +89,29 @@ public class CartPage extends BasePage {
     }
 
 
-        public void removeAllItemsFromCart() {
-            // Öğeleri bul
-            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+    public void removeAllItemsFromCart() {
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
 
-            for (int i = 0; i < elements.size(); i++) {
-                // "Kaldır" butonunun tıklanabilir olmasını bekle
-                WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(45));
-                WebElement removeButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-original-title='Remove']")));
+        // Tüm öğeler kaldırılıncaya kadar döngüyü çalıştır
+        while (!elements.isEmpty()) {
+            // Listenin ilk öğesini al ve "Remove" düğmesini bul
+            WebElement element = elements.get(0);
+            WebElement removeButton = element.findElement(By.cssSelector("[data-original-title='Remove']"));
 
-                try {
-                    // "Kaldır" butonuna tıkla
-                    BrowserUtils.waitFor(8);
-                    removeButton.click();
+            // "Remove" düğmesine tıkla
+            removeButton.click();
 
+            // Öğenin sayfanın dışına çıkması bekleniyor
+            WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(20));
+            wait.until(ExpectedConditions.stalenessOf(element));
 
-                    // Kaldırma işlemi tamamlanana kadar bekle
-                    wait.until(ExpectedConditions.stalenessOf(elements.get(i)));
-
-                    // Kalan öğeleri tekrar bul
-                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-                } catch (Exception e) {
-                    // Herhangi bir hata durumunda, öğeleri tekrar bul
-                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-                    // İndeksi ayarla
-                    i--;
-                }
-            }
-        }
-
-        public boolean isCartEmpty() {
-            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-            return elements.isEmpty();
+            // Kalan öğeleri tekrar bul
+            elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
         }
     }
+
+    public boolean isCartEmpty() {
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+        return elements.isEmpty();
+    }
+}

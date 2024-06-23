@@ -2,20 +2,13 @@ package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
-import io.cucumber.java.en_old.Ac;
-import io.cucumber.java.eo.Se;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutPage extends BasePage {
@@ -35,7 +28,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//div[@id='content']//table[@class='table table-bordered']//tbody//td[@class='text-left'][1]")
     public List<String> product_list_l;
 
-    @FindBy(xpath = "//a[.='Estimate Shipping & Taxes ']")
+    @FindBy(xpath = "//*[.='Estimate Shipping & Taxes ']")
     public WebElement shipping_l;
 
     @FindBy(css = "[id='input-country']")
@@ -111,7 +104,7 @@ public class CheckoutPage extends BasePage {
     public WebElement city_l;
 
     @FindBy(xpath = "//*[@id='input-payment-postcode']")
-    public WebElement post_code_l;
+    public WebElement billing_post_code;
 
     @FindBy(css = "[id='input-payment-country']")
     public WebElement country_drop_down;
@@ -204,7 +197,9 @@ public class CheckoutPage extends BasePage {
         BrowserUtils.waitFor(5);
         city_l.sendKeys(city);
         BrowserUtils.waitFor(5);
-        post_code_l.sendKeys("34863");
+        billing_post_code.clear();
+        BrowserUtils.waitFor(5);
+        billing_post_code.sendKeys(postCode);
         BrowserUtils.waitFor(5);
         Select select = new Select(country_drop_down);
         select.selectByVisibleText("Australia");
@@ -220,7 +215,7 @@ public class CheckoutPage extends BasePage {
 
     public void delivery_adress_list_fill(String firstName, String lastName, String address1,
                                           String city, String postCode) {
-        BrowserUtils.waitFor(50);
+        BrowserUtils.waitFor(5);
         delivery_first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(5);
         delivery_last_name_l.sendKeys(lastName);
@@ -228,6 +223,8 @@ public class CheckoutPage extends BasePage {
         delivery_adresse1_l.sendKeys(address1);
         BrowserUtils.waitFor(5);
         delivery_city_l.sendKeys(city);
+        BrowserUtils.waitFor(5);
+       delivery_post_code_l.clear();
         BrowserUtils.waitFor(5);
         delivery_post_code_l.sendKeys(postCode);
         Select select = new Select(delivery_country_drop_down);
@@ -242,61 +239,5 @@ public class CheckoutPage extends BasePage {
 
     }
 
-    public void invalid_billing_adress_list_fill(String firstName, String lastName, String address1,
-                                                 String city, String postCode, String expected_warnungMsg) {
-        first_name_l.sendKeys(firstName);
-        BrowserUtils.waitFor(5);
-        last_name_l.sendKeys(lastName);
-        BrowserUtils.waitFor(5);
-        adresse1_l.sendKeys(address1);
-        BrowserUtils.waitFor(5);
-        city_l.sendKeys(city);
-        BrowserUtils.waitFor(5);
-        post_code_l.sendKeys("34863");
-        BrowserUtils.waitFor(5);
-        Select select = new Select(country_drop_down);
-        select.selectByVisibleText("Australia");
-        BrowserUtils.waitFor(5);
-        Select select1 = new Select(region_drop_down);
-        select1.selectByIndex(3);
-        BrowserUtils.waitFor(5);
 
-        BrowserUtils.clickWithJS(billing_continue_btn_l);
-        String acturlerrorMsg = adress_form_error_msg_l.getText();
-        String expectedmsg=expected_warnungMsg;
-        System.out.println("expectedmsg = " + expectedmsg);
-        System.out.println("acturlerrorMsg = " + acturlerrorMsg);
-
-        Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
-
-
-    }
-
-    public void invalid_delivery_adress_list_fill(String firstName, String lastName, String address1,
-                                                  String city, String postCode, String expected_warnungMsg) {
-        BrowserUtils.waitFor(30);
-        delivery_first_name_l.sendKeys(firstName);
-        BrowserUtils.waitFor(5);
-        delivery_last_name_l.sendKeys(lastName);
-        BrowserUtils.waitFor(5);
-        delivery_adresse1_l.sendKeys(address1);
-        BrowserUtils.waitFor(5);
-        delivery_city_l.sendKeys(city);
-        BrowserUtils.waitFor(5);
-        delivery_post_code_l.sendKeys(postCode);
-        Select select = new Select(delivery_country_drop_down);
-        select.selectByVisibleText("Australia");
-        BrowserUtils.waitFor(5);
-        Select select1 = new Select(delivery_region_drop_down);
-        select1.selectByIndex(3);
-        BrowserUtils.waitFor(5);
-
-        BrowserUtils.clickWithJS(delivery_continue_btn_l);
-        String acturlerrorMsg = adress_form_error_msg_l.getText();
-        String expectedmsg=expected_warnungMsg;
-        System.out.println("expectedmsg = " + expectedmsg);
-        System.out.println("acturlerrorMsg = " + acturlerrorMsg);
-
-        Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
-    }
 }
