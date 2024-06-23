@@ -10,14 +10,14 @@ Feature: Cart Icon function
     And The User clicks add to cart
     Then Verifies the "<message>" that the relevant product has been added to the cart
     Examples:
-      | email              | password | subcategory     | product                                                  | message                 |
-      | ertan986@gmail.com | 123456   | Health & Beauty | WAHL 7061-117 Lithium Lifeproof Mens Electric Shaver     | Success: You have added |
-      | ertan986@gmail.com | 123456   | Televisions     | Samsung QE55Q70AATXXU 55\" Smart 4K Ultra HD HDR QLED TV | Success: You have added |
-      | ertan986@gmail.com | 123456   | TV Accessories  | C2G 3m Select High Speed HDMI Cable with Ethernet        | Success: You have added |
-      | ertan986@gmail.com | 123456   | Networking      | Transcend HUB3 - Hub                                     | Success: You have added |
+      | email              | password | subcategory     | product                                              | message                 |
+      | ertan986@gmail.com | 123456   | Health & Beauty | WAHL 7061-117 Lithium Lifeproof Mens Electric Shaver | Success: You have added |
+      | ertan986@gmail.com | 123456   | Televisions     | Cello C4320DVB 43\" LED-backlit LCD TV               | Success: You have added |
+      | ertan986@gmail.com | 123456   | TV Accessories  | C2G Velocity audio cable                             | Success: You have added |
+      | ertan986@gmail.com | 123456   | Networking      | ASUS ZenWiFi XD6 - Wi-Fi system (2 routers)          | Success: You have added |
 
   @B13DGMRAU-6-SC:2
-    Scenario: Empty the basket
+  Scenario: Empty the basket
     Given The user logged in with valid credentials "ertan986@gmail.com" and "123456" and is on the home page
     When User clicks on the cart
     And The user removes items from cart

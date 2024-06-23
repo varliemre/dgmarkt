@@ -143,13 +143,14 @@ public class CheckoutPage extends BasePage {
     public WebElement adress_form_error_msg_l;
 
     public void click_cart_Ikon() {
-
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+        jse.executeScript("arguments[0].scrollIntoView(true);", cart_l);
         executor.executeScript("arguments[0].click();", cart_l);
-        BrowserUtils.waitForClickablility(cart_l, 15);
-        executor.executeScript("arguments[0].click();", viewCart_l);
-        BrowserUtils.waitForClickablility(viewCart_l,30);
-
+        jse.executeScript("arguments[0].scrollIntoView(true);", viewCart_l);
         BrowserUtils.clickWithJS(viewCart_l);
+
+
+
 
 
 

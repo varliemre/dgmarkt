@@ -32,7 +32,7 @@ Feature: Checkout
 
     Given The user logged in with valid credentials "ertan986@gmail.com" and "123456" and is on the home page
     When The user selects a "Networking"
-    And The user selects a "Trust Halyx Aluminium USB-C to 4-Port USB-A 3.2 Hub" from the categories
+    And The user selects a "Broadcom 5720 - Customer Kit" from the categories
     When User clicks on the cart
     And User clicks the Checkout icon
     And The user clicks I want to use a new billing address

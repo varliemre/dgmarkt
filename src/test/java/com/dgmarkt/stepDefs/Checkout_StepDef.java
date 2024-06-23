@@ -72,11 +72,12 @@ public class Checkout_StepDef {
 
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+        BrowserUtils.waitFor(2);
         jse.executeScript("arguments[0].scrollIntoView(true);", checkoutPage.checkout_btn_l);
-        BrowserUtils.waitFor(30);
+        BrowserUtils.waitFor(150);
         BrowserUtils.clickWithJS(checkoutPage.checkout_btn_l);
         //checkoutPage.checkout_btn_l.click();
-        BrowserUtils.waitForClickablility(checkoutPage.checkout_btn_l, 60);
+      BrowserUtils.waitForClickablility(checkoutPage.checkout_btn_l, 150);
 
     }
 
