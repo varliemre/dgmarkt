@@ -17,7 +17,7 @@ Feature: As a user, I should be able to register on the website.
     And The user clicks on the continue without filling in the required fields.
     Then Verify that the user cannot register
 
-
+  @register
   Scenario Outline:  Register by leaving one of the required fields blank
     And The user register with "<First Name>" und "<Last Name>" und "<E-Mail>" "<Telephone>" und "<Password>" und "<Password Confirm>"
     Then Verify that error message "<error message>"

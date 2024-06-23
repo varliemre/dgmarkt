@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/dgmarkt/stepDefs",
         dryRun =false,
-        tags =  "@wip"
+        tags =  "@US-09"
 )
 public class CukesRunner {
 }
