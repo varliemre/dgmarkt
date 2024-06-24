@@ -50,25 +50,24 @@ public class CartPage extends BasePage {
 
     public void select_product(String productNAme) {
         Select select = new Select(show_konteyner);
-        BrowserUtils.waitFor(11);
         select.selectByVisibleText("100");
-        BrowserUtils.waitFor(5);
+        //BrowserUtils.waitFor(25);
 
         WebElement selectproduct = Driver.get().findElement(By.xpath("//a[.='" + productNAme + "']"));
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript("arguments[0].scrollIntoView(true);", selectproduct);
 
-        BrowserUtils.waitForClickablility(selectproduct, 80);
-       // BrowserUtils.clickWithJS(selectproduct);
+        //BrowserUtils.waitForClickablility(selectproduct, 20);
+        // BrowserUtils.clickWithJS(selectproduct);
         try {
             BrowserUtils.clickWithJS(selectproduct);
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
-        BrowserUtils.waitFor(10);
-    }
 
+        }
+
+    }
 
     public void add_to_cart() {
         WebElement add_to_cart_l = Driver.get().findElement(By.xpath("//*[.='Add to Cart']"));

@@ -48,9 +48,9 @@ public class Checkout_StepDef {
     @When("The user sees the shipping costs by entering the country address information")
     public void the_user_sees_the_shipping_costs_by_entering_the_country_address_information() {
 
-BrowserUtils.scrollToElement(checkoutPage.shipping_l);
-BrowserUtils.waitForClickablility(checkoutPage.shipping_l,20);
-      checkoutPage.shipping_l.click();
+        BrowserUtils.scrollToElement(checkoutPage.shipping_l);
+        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 20);
+        checkoutPage.shipping_l.click();
 
 
         Select select = new Select(checkoutPage.country_l);
@@ -183,16 +183,18 @@ BrowserUtils.waitForClickablility(checkoutPage.shipping_l,20);
 
     @And("The user clicks I want to use a new billing address")
     public void theUserClicksIWantToUseANewBillingAddress() {
-        BrowserUtils.waitFor(10);
+        //BrowserUtils.waitFor(3);
+
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_billing_address_l);
-        BrowserUtils.waitFor(10);
+     BrowserUtils.waitFor(2);
     }
 
     @When("The user clicks I want to use a new delivery address")
     public void the_user_clicks_i_want_to_use_a_new_delivery_address() {
-        BrowserUtils.waitFor(10);
+       BrowserUtils.waitFor(2);
+        BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_delivery_address_l);
-        BrowserUtils.waitFor(10);
+      BrowserUtils.waitFor(3);
     }
 
     @And("Fill in the delivery address form {string}  {string},{string} ,{string} ,{string}  on the page that opens and click continue")
@@ -202,9 +204,8 @@ BrowserUtils.waitForClickablility(checkoutPage.shipping_l,20);
     }
 
 
-    @Then("Verify that the user  {string} will not continue b with incorrect billing address information")
-    public void verifyThatTheUserWillNotContinueBWithIncorrectBillingAddressInformation(String warnungMesg) {
-
+    @Then("Verify that the user cannot continue shopping with incorrect billing address information and verify the {string}")
+    public void verifyThatTheUserCannotContinueShoppingWithIncorrectBillingAddressInformationAndVerifyThe(String warnungMesg) {
 
         String acturlerrorMsg = checkoutPage.adress_form_error_msg_l.getText();
         String expectedmsg = warnungMesg;
@@ -215,13 +216,12 @@ BrowserUtils.waitForClickablility(checkoutPage.shipping_l,20);
         Assert.assertEquals(expectedmsg, acturlerrorMsg);
 
 
+
     }
 
 
-    @Then("Verify that the user  {string} will not continue b with incorrect delivery address information")
-    public void verifyThatTheUserWillNotContinueBWithIncorrectDeliveryAddressInformation(String expected_warnungMsg) {
-
-
+    @Then("Verify that the user cannot continue shopping with incorrect delivery address information and verify the {string}")
+    public void verifyThatTheUserCannotContinueShoppingWithIncorrectDeliveryAddressInformationAndVerifyThe(String expected_warnungMsg) {
         String acturlerrorMsg = checkoutPage.adress_form_error_msg_l.getText();
         String expectedmsg = expected_warnungMsg;
         System.out.println("expectedmsg = " + expectedmsg);
@@ -229,8 +229,6 @@ BrowserUtils.waitForClickablility(checkoutPage.shipping_l,20);
 
         Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
     }
-
-
 }
 
 

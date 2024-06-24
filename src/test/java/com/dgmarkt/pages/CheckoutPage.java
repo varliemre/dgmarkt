@@ -190,40 +190,41 @@ public class CheckoutPage extends BasePage {
     public void billing_adress_list_fill(String firstName, String lastName, String address1,
                                          String city, String postCode) {
         first_name_l.sendKeys(firstName);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
         last_name_l.sendKeys(lastName);
-        BrowserUtils.waitFor(5);
+       BrowserUtils.waitFor(2);
         adresse1_l.sendKeys(address1);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
         city_l.sendKeys(city);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
         billing_post_code.clear();
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
         billing_post_code.sendKeys(postCode);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
         Select select = new Select(country_drop_down);
         select.selectByVisibleText("Australia");
-        BrowserUtils.waitFor(5);
+      BrowserUtils.waitFor(5);
         Select select1 = new Select(region_drop_down);
         select1.selectByIndex(3);
         BrowserUtils.waitFor(5);
 
         BrowserUtils.clickWithJS(billing_continue_btn_l);
+        BrowserUtils.waitForClickablility(billing_continue_btn_l,10);
 
 
     }
 
     public void delivery_adress_list_fill(String firstName, String lastName, String address1,
                                           String city, String postCode) {
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(1);
         delivery_first_name_l.sendKeys(firstName);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(1);
         delivery_last_name_l.sendKeys(lastName);
-        BrowserUtils.waitFor(5);
+      BrowserUtils.waitFor(2);
         delivery_adresse1_l.sendKeys(address1);
-        BrowserUtils.waitFor(5);
+     BrowserUtils.waitFor(2);
         delivery_city_l.sendKeys(city);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
        delivery_post_code_l.clear();
         BrowserUtils.waitFor(5);
         delivery_post_code_l.sendKeys(postCode);
@@ -232,9 +233,10 @@ public class CheckoutPage extends BasePage {
         BrowserUtils.waitFor(5);
         Select select1 = new Select(delivery_region_drop_down);
         select1.selectByIndex(3);
-        BrowserUtils.waitFor(5);
+
 
         BrowserUtils.clickWithJS(delivery_continue_btn_l);
+        BrowserUtils.waitForClickablility(delivery_continue_btn_l,10);
 
 
     }
