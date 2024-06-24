@@ -20,12 +20,17 @@ public class ChangePassword_StepDefs {
         changePasswordPage.passwordMenu.click();
     }
 
-    @Given("The user enters the {string} in the password field and password confirm field")
-    public void theUserEntersTheInThePasswordFieldAndPasswordConfirmField(String newPassword) {
+    @Given("The user enters the {string} in the password field")
+    public void theUserEntersTheInThePasswordField(String newPassword) {
         changePasswordPage.passwordField.sendKeys(newPassword);
-        changePasswordPage.passwordConfirmField.sendKeys(newPassword);
 
     }
+
+    @When("The user enters the {string} in the password confirm field")
+    public void theUserEntersTheInThePasswordConfirmField(String confirmPassword) {
+        changePasswordPage.passwordConfirmField.sendKeys(confirmPassword);
+    }
+
 
     @And("The user clicks the continue button")
     public void theUserClicksTheContinueButton() {
@@ -43,5 +48,11 @@ public class ChangePassword_StepDefs {
 
     }
 
-
+    @Then("The user should see an {string} in Password Page")
+    public void theUserShouldSeeAnInPasswordPage(String expectedErrorMessage) {
+        String actualErrorMessage = changePasswordPage.errorMessages.getText();
+        System.out.println("actualErrorMessage = " + actualErrorMessage);
+        System.out.println("expectedErrorMessage = " + expectedErrorMessage);
+        Assert.assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
 }

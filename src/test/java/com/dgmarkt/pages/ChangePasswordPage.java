@@ -20,5 +20,7 @@ public class ChangePasswordPage extends BasePage {
     @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
     public WebElement successMessage;
 
+    @FindBy(xpath = "//div[@class='text-danger']")
+    public WebElement errorMessages;
 
 }
