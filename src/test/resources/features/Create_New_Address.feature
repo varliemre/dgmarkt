@@ -2,6 +2,10 @@ Feature: User Create New Address
   @Address
     Scenario Outline: Successful create a new address with valid credentials
       Given The user is on the Home page
+      And The user clicks on the MyAccount dropbox and clicks on the login button.
+      When The user enters a valid "<email>" and "<password>"
+      And The user clicks on the login button
+      Then The user should see the message that you have successfully logged in
       And The user clicks on the MyAccount dropbox and clicks on the myaccount button.
       Then The user clicks the Address Book button.
       And The user clicks the New Address button.
@@ -12,5 +16,5 @@ Feature: User Create New Address
       And The user click on the Continue button
       Then The user should see the message that Your address has been successfully added
       Examples:
-        | firstName | lastName | company       | address1      | address2 | city | postCode |
-        | Fatma     | Soytas   | Sahan Holding | Mörikerstr. 2 | k2       | Ulm  | 71011    |
+        | firstName | lastName | company       | address1      | address2 | city | postCode |  | email                     | password   |  |
+        | Fatma     | Soytas   | Sahan Holding | Mörikerstr. 2 | k2       | Ulm  | 71011    |  | fatmasoytas81@hotmail.com | Fatma2024. |  |

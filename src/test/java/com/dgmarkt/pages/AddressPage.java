@@ -2,12 +2,16 @@ package com.dgmarkt.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddressPage extends BasePage{
 
 
     @FindBy(xpath = "//*[@id=\"top-links\"]")
     public WebElement myAccountDropbox;
+
+    @FindBy(id = "pt-login-link")
+    public WebElement loginButton;
 
     @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li/ul/li[1]")
     public WebElement myAccountDropboxButton;
@@ -45,8 +49,10 @@ public class AddressPage extends BasePage{
     @FindBy(id = "input-country")
     public WebElement inputDropboxCountry;
 
+
     @FindBy(id = "input-zone")
     public WebElement inputDropboxZone;
+
 
     @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset/div[10]/div/label[1]/input")
     public WebElement defaultAddressRadioButton;
@@ -54,7 +60,8 @@ public class AddressPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"content\"]/form/div/div[2]")
     public WebElement continueButton;
 
-    @FindBy(xpath = "//*[@id=\"account-address\"]/div[1]/text()")
+    @FindBy(xpath = "//*[text()=' Congratulation! Login Successfully']")
+
     public WebElement createdNewAddressMessage;
 
 

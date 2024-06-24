@@ -14,7 +14,7 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//span[normalize-space()='Login']")
     public WebElement loginBtn;
 
-    @FindBy(xpath = "//*[text()=' Congratulation! Login Successfully']")
+    @FindBy(xpath = "//*[text()=' Your address has been successfully added']")
     public WebElement successMsg;
 
     public void login(String email,String password){
