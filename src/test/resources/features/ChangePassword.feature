@@ -1,4 +1,10 @@
 Feature: As a user, I should be able to change the password by clicking the Password tab under the My Account module.
+  Acceptance Criteria :
+  1-Verifies that the user can change the password.
+  2-Verifies error message when user can't confirm password
+  3-Verify error message when is given the same password
+  4-Verify error message with blank input boxes
+  5-Verify error message when is password out of boundary
 
   Background:
     Given The user logged in with valid credentials "adminlast11@gmail.com" and "admin1234567890" and is on the home page
