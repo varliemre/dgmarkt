@@ -1,7 +1,5 @@
 
 Feature: User Login Test
-
-
   @wip
   Scenario Outline: Successful login with valid credentials
     Given The user is on the login page
