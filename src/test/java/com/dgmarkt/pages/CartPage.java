@@ -38,9 +38,9 @@ public class CartPage extends BasePage {
         WebElement catagoryHover = Driver.get().findElement(By.xpath("//*[.='Category']"));
         BrowserUtils.waitForClickablility(catagoryHover, 5);
         Actions actions = new Actions(Driver.get());
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
         actions.moveToElement(catagoryHover).perform();
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
 
 
         WebElement submenuWebElement = Driver.get().findElement(By.xpath("//a[contains(@class, 'a-mega-second-link') and text()='" + subCatagoryName + "']"));
