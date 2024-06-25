@@ -1,15 +1,14 @@
+@B13DGMRAU-6
 Feature:As a user, I should be able to manage the cart by clicking the cart icon.
-
-
-  Acception Criteria:
-
-  1- The user Adds the product from the list to the cart.
-  2 - Verify that the user can see the products added to the cart by clicking the cart icon.
+Acception Criteria;
+  1- Verify that the user can select products from the relevant category and add them to the cart.
+  2 - Verify that the user can see the products added to the cart by clicking the cart.
   3- Verify that the user can delete items from the cart.
   4- Verify that the user should be able to access the cart from the view cart button.
   5 - Verify that the user should be able to go to the Checkout page from the cart icon and complete the checkout.
-  6- Verify that the user can enter a different Shipping address during checkout.
-  7 - Verify that the user can enter another billing address during checkout.
+  6- Verify that the user can enter a new Shipping address during checkout.
+  7 - Verify that the user can enter a new billing address during checkout.
+  8 - Verify that the user can continue shopping from the cart.
 
   Background:
     Given The user is on the login page
@@ -29,7 +28,7 @@ Feature:As a user, I should be able to manage the cart by clicking the cart icon
       | Networking      | Transcend HUB3 - Hub                                     | Success: You have added |
       | Health & Beauty | Wahl De Luxe Hair Clipper Gift Set                       | Success: You have added |
 
-  @B13DGMRAU-6-SC:2
+  @B13DGMRAU-52
   Scenario: Empty the basket
     When User clicks on the cart
     And The user removes items from cart

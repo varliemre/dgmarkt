@@ -49,24 +49,24 @@ public class Checkout_StepDef {
     public void the_user_sees_the_shipping_costs_by_entering_the_country_address_information() {
 
         BrowserUtils.scrollToElement(checkoutPage.shipping_l);
-        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 20);
+        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 50);
         checkoutPage.shipping_l.click();
 
 
         Select select = new Select(checkoutPage.country_l);
         select.selectByVisibleText("Turkey");
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
 
         Select select1 = new Select(checkoutPage.inputZone_l);
         select1.selectByVisibleText("Adana");
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
 
         checkoutPage.postcode_l.clear();
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
         checkoutPage.postcode_l.sendKeys("12345");
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
         checkoutPage.button_quote_l.click();
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
         checkoutPage.flat_radioBtn_l.click();
         BrowserUtils.waitFor(10);
         checkoutPage.apply_shipping_btn_l.click();
@@ -97,11 +97,11 @@ public class Checkout_StepDef {
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         Select select = new Select(checkoutPage.adress_konteyner_billing_l);//mevcut adreslerden birisi secildi
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(2);
         select.selectByIndex(3);
 
         jse.executeScript("arguments[0].scrollIntoView(true);", checkoutPage.billing_continue_btn_l);
-        BrowserUtils.waitFor(20);
+        BrowserUtils.waitFor(2);
 
 
         BrowserUtils.clickWithJS(checkoutPage.billing_continue_btn_l);
@@ -186,7 +186,7 @@ public class Checkout_StepDef {
         //BrowserUtils.waitFor(3);
 
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_billing_address_l);
-     BrowserUtils.waitFor(2);
+     BrowserUtils.waitFor(10);
     }
 
     @When("The user clicks I want to use a new delivery address")
