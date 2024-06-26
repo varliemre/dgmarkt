@@ -230,6 +230,7 @@ public class Checkout_StepDef {
         String expectedmsg = expected_warnungMsg;
         System.out.println("expectedmsg = " + expectedmsg);
         System.out.println("acturlerrorMsg = " + acturlerrorMsg);
+        BrowserUtils.waitFor(5);
 
         Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
     }
