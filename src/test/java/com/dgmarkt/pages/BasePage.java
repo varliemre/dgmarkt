@@ -1,4 +1,5 @@
 package com.dgmarkt.pages;
+import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,7 @@ public abstract class BasePage {
 
 
     public void navigateMyAccount(String menuName){
+        BrowserUtils.waitForClickablility(myAccountDropDown,10);
         myAccountDropDown.click();
         Driver.get().findElement(By.xpath("//a[text()='"+ menuName+ "']")).click();
     }
