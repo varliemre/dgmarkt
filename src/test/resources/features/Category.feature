@@ -1,15 +1,28 @@
 Feature: Category Module
 
-  Scenario: Verify that the user can navigate the Sub-Category Page
-    Given The user is on the home page
-    When The user hovers over the Category tab
-    And The user hovers over the Sub-Category tab
-    And The user clicks on a Sub-Category tab
-    Then The Sub-Category Page should be displayed
 
+  Scenario: Navigate to Sub-Category
+    When The user navigates to the "Category Name" category
+    And The user selects the "Sub-Category Name" sub-category
+    Then The user should see the Sub-Category page
 
-  Scenario: User can hover over Category and click on a specific Sub-Category tab
-    Given The user is on the home page
-    When The user hovers over the Category tab
-    And The user clicks on the "Networking" Sub-Category tab
-    Then The "Networking" Sub-Category page is displayed
+  Scenario: Navigate through Sub-Category Tabs
+    When The user navigates to the "Category Name" category
+    And The user selects the "Sub-Category Name" sub-category
+    And The user navigates through the following tabs:
+      | Tab Name  |
+      | Tab 1     |
+      | Tab 2     |
+      | Tab 3     |
+    Then Each tab should display the correct content
+
+  Scenario: Click buttons and verify navigation
+    When The user navigates to the "Category Name" category
+    And The user selects the "Sub-Category Name" sub-category
+    And The user clicks on the following buttons:
+      | Button Name  |
+      | Button 1     |
+      | Button 2     |
+      | Button 3     |
+    Then Each button should navigate to the correct page
+
