@@ -17,6 +17,9 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//*[text()=' Congratulation! Login Successfully']")
     public WebElement successMsg;
 
+    @FindBy(xpath="//*[text()=' Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.']")
+    public WebElement errorMsg;
+
     public void login(String email,String password){
         loginEmail.sendKeys(email);
         loginPassword.sendKeys(password);

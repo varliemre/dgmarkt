@@ -12,19 +12,19 @@ Feature: As a user, I should be able to login with VALID credentials
       | email              | password |
       | ertan986@gmail.com | 123456   |
 
- @betul2
-  Scenario  Record with all fields left blank
-    When the user clicks the login button without filling in the required fields.
+  @betul2
+  Scenario: Record with all fields left blank
+    When The user clicks the login button without filling in the required fields.
     Then verify that the user cannot log in
 
   @betul3
-  Scenario Outline:  Login by leaving one of the required fields blank
+  Scenario Outline: Login by leaving one of the required fields blank
     When The user login with "<E-Mail>" and "<Password>"
     Then Verify that error message "<error message>"
     Examples:
       | E-Mail               | Password   | error message                                         |
       |                      | admin98765 | Warning: No match for E-Mail Address and/or Password. |
-      | adminlast9@gmail.com |            | Warning: No match for E-Mail Address and/or Password. |
+      | admin-last9@gmail.com |            | Warning: No match for E-Mail Address and/or Password. |
 
 
   @B@betul4
@@ -68,7 +68,7 @@ Feature: As a user, I should be able to login with VALID credentials
 
 
 
-  Scenario Outline:  Login with different email formats
+  Scenario Outline: Login with different email formats
     When The user login with "<E-Mail>" and "<Password>"
     Then The user should see an error message "<errorMessage>"
     Examples:
@@ -91,8 +91,8 @@ Feature: As a user, I should be able to login with VALID credentials
       | username@domain.com..      | John123  | E-Mail Address does not appear to be valid! |
       | username@gmail,com         | John123  | E-Mail Address does not appear to be valid! |
 
-
-  Scenario:The user can see the password in a form of dots by default
+  @betul50
+  Scenario: The user can see the password in a form of dots by default
     When The user enters valid username into "username" inputbox
     And The user enters valid password into "password" inputbox
     Then Password should be entered in a form of "dots" by default
@@ -118,7 +118,7 @@ Feature: As a user, I should be able to login with VALID credentials
       | ' OR '1'='1                   | <script>alert('XSS')</script> | Warning: No match for E-Mail Address and/or Password. |
 
 
-
+  @betul51
   Scenario: Navigating through controls using the "Tab" key
     When The user clicks on the email field
     And The user presses the Tab key
