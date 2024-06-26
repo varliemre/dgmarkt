@@ -49,20 +49,20 @@ public class Checkout_StepDef {
     public void the_user_sees_the_shipping_costs_by_entering_the_country_address_information() {
 
         BrowserUtils.scrollToElement(checkoutPage.shipping_l);
-        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 50);
-        checkoutPage.shipping_l.click();
+        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 60);
+        BrowserUtils.clickWithJS(checkoutPage.shipping_l);
 
 
         Select select = new Select(checkoutPage.country_l);
         select.selectByVisibleText("Turkey");
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
 
         Select select1 = new Select(checkoutPage.inputZone_l);
         select1.selectByVisibleText("Adana");
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
 
         checkoutPage.postcode_l.clear();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         checkoutPage.postcode_l.sendKeys("12345");
         BrowserUtils.waitFor(3);
         checkoutPage.button_quote_l.click();
@@ -88,7 +88,8 @@ public class Checkout_StepDef {
         BrowserUtils.clickWithJS(checkoutPage.checkout_btn_l);
         //checkoutPage.checkout_btn_l.click();
         BrowserUtils.waitForClickablility(checkoutPage.checkout_btn_l, 15);
-        BrowserUtils.waitFor(20);
+        BrowserUtils.waitFor(5);
+        Driver.get().navigate().refresh();
 
     }
 
@@ -184,17 +185,20 @@ public class Checkout_StepDef {
     @And("The user clicks I want to use a new billing address")
     public void theUserClicksIWantToUseANewBillingAddress() {
         //BrowserUtils.waitFor(3);
-
+        //BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_billing_address_l);
+        BrowserUtils.waitForClickablility(checkoutPage.I_want_to_use_a_new_billing_address_l, 40);
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_billing_address_l);
-     BrowserUtils.waitFor(10);
+
     }
 
     @When("The user clicks I want to use a new delivery address")
     public void the_user_clicks_i_want_to_use_a_new_delivery_address() {
-       BrowserUtils.waitFor(2);
-        BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
+        //BrowserUtils.waitFor(2);
+        // BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
+     //   BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
+        BrowserUtils.waitForClickablility(checkoutPage.I_want_to_use_a_new_delivery_address_l, 40);
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_delivery_address_l);
-      BrowserUtils.waitFor(3);
+
     }
 
     @And("Fill in the delivery address form {string}  {string},{string} ,{string} ,{string}  on the page that opens and click continue")
@@ -228,6 +232,23 @@ public class Checkout_StepDef {
         System.out.println("acturlerrorMsg = " + acturlerrorMsg);
 
         Assert.assertEquals(expected_warnungMsg, acturlerrorMsg);
+    }
+
+    @When("The User click Continue Shopping")
+    public void the_user_click_continue_shopping() {
+        checkoutPage.webElementClick_Methode(checkoutPage.continue_shopping_btn);
+
+
+    }
+
+    @Then("Verify The user is on the home page")
+    public void verify_the_user_is_on_the_home_page() {
+        String actualUrl = Driver.get().getCurrentUrl();
+        String expectedUrl = "https://dgmarkt.com/";
+        Assert.assertEquals(actualUrl, expectedUrl);
+        System.out.println("actualUrl = " + actualUrl);
+        System.out.println("expectedUrl = " + expectedUrl);
+
     }
 }
 
