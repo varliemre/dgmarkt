@@ -1,6 +1,9 @@
 Feature: Category Module
 
+  Background:
+    Given The user is on the Home page
 
+  @B13DGMRAU-46
   Scenario: Navigate to Sub-Category
     When The user navigates to the "Category Name" category
     And The user selects the "Sub-Category Name" sub-category
@@ -11,9 +14,10 @@ Feature: Category Module
     And The user selects the "Sub-Category Name" sub-category
     And The user navigates through the following tabs:
       | Tab Name  |
-      | Tab 1     |
-      | Tab 2     |
-      | Tab 3     |
+      |  Health & Beauty  |
+      | Televisions     |
+      | Tv Accessories    |
+      | Networking        |
     Then Each tab should display the correct content
 
   Scenario: Click buttons and verify navigation
@@ -21,8 +25,9 @@ Feature: Category Module
     And The user selects the "Sub-Category Name" sub-category
     And The user clicks on the following buttons:
       | Button Name  |
-      | Button 1     |
-      | Button 2     |
-      | Button 3     |
+      | Health & Beauty  |
+      | Televisions     |
+      | Tv Accessories    |
+      | Networking    |
     Then Each button should navigate to the correct page
 
