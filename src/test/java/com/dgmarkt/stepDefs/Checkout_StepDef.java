@@ -98,11 +98,11 @@ public class Checkout_StepDef {
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         Select select = new Select(checkoutPage.adress_konteyner_billing_l);//mevcut adreslerden birisi secildi
-        BrowserUtils.waitFor(2);
-        select.selectByIndex(3);
+        BrowserUtils.waitFor(5);
+        select.selectByIndex(5);
 
         jse.executeScript("arguments[0].scrollIntoView(true);", checkoutPage.billing_continue_btn_l);
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(5);
 
 
         BrowserUtils.clickWithJS(checkoutPage.billing_continue_btn_l);
@@ -190,12 +190,9 @@ public class Checkout_StepDef {
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_billing_address_l);
 
     }
+    @When("The user clicks I want to use a new delivery address address")
+    public void the_user_clicks_i_want_to_use_a_new_delivery_address_address() {
 
-    @When("The user clicks I want to use a new delivery address")
-    public void the_user_clicks_i_want_to_use_a_new_delivery_address() {
-        //BrowserUtils.waitFor(2);
-        // BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
-     //   BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
         BrowserUtils.waitForClickablility(checkoutPage.I_want_to_use_a_new_delivery_address_l, 40);
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_delivery_address_l);
 
@@ -215,7 +212,7 @@ public class Checkout_StepDef {
         String expectedmsg = warnungMesg;
         System.out.println("expectedmsg = " + expectedmsg);
         System.out.println("acturlerrorMsg = " + acturlerrorMsg);
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(5);
 
         Assert.assertEquals(expectedmsg, acturlerrorMsg);
 
