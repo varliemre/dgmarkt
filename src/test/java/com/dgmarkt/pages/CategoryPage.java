@@ -46,7 +46,7 @@ public class CategoryPage extends BasePage{
 
         // Method to verify tab content
         public boolean isTabContentDisplayed(String tabName) {
-            return driver.findElement(By.xpath("")).getText().contains(tabName);
+            return driver.findElement(By.xpath("//*[@id=\"pt-menu-7444\"]/ul/li[2]/div/div/div[2]")).getText().contains(tabName);
         }
 
         // Method to click buttons

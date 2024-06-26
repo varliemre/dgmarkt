@@ -33,7 +33,6 @@ public class CategorySteps {
         public void the_user_selects_the_sub_category(String subCategory) {
             categoryPage.selectSubCategory(subCategory);
         }
-
         //
         @Then("The user should see the Sub-Category page")
         public void the_user_should_see_the_sub_category_page() {

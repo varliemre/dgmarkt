@@ -1,5 +1,6 @@
 Feature: Category Module
 
+
   Scenario: Navigate to Sub-Category
     When The user navigates to the "Category Name" category
     And The user selects the "Sub-Category Name" sub-category
