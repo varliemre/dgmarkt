@@ -15,7 +15,7 @@ public abstract class BasePage {
     @FindBy(xpath = "//a[@class='a-close-newsletter']")
     public WebElement newsletterCloseBtn;
 
-    @FindBy(xpath = "//span[normalize-space()='My Account']")
+    @FindBy(xpath = "//span[text()='My Account']")
     public WebElement myAccountDropDown;
 
     @FindBy(xpath = "(//button[@class='button'])[2]/*")
