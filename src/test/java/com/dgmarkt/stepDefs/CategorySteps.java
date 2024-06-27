@@ -2,6 +2,8 @@ package com.dgmarkt.stepDefs;
 
 
 import com.dgmarkt.pages.CategoryPage;
+import com.dgmarkt.pages.HomePage;
+import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,72 +18,77 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import org.junit.Assert;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
 public class CategorySteps {
+    HomePage homePage = new HomePage();
+    CategoryPage subCategoryPage = new CategoryPage();
 
-        WebDriver driver;
-        CategoryPage categoryPage;
+    @When("The user moves to Category button")
+    public void theUserMovesToCategoryButton() throws InterruptedException {
+        homePage.dontShowAgain.click();
+        homePage.closePopupButton.click();
+        Actions actions = new Actions(Driver.get());
+        actions.moveToElement(subCategoryPage.categoryButton).perform();
+        Thread.sleep(3000);
 
-        @Given("The user is on the Home page")
-        public void the_user_is_on_the_home_page() {
-            // Initialize the WebDriver
-            driver = new ChromeDriver();
-            driver.get("https://dgmarkt.com/");
-            categoryPage = new CategoryPage(driver);
-        }
-
-        @When("The user navigates to the {string} category")
-        public void the_user_navigates_to_the_category(String category) {
-            categoryPage.navigateToCategory(category);
-        }
-
-        @When("The user selects the {string} sub-category")
-        public void the_user_selects_the_sub_category(String subCategory) {
-            categoryPage.selectSubCategory(subCategory);
-        }
-
-        @Then("The user should see the Sub-Category page")
-        public void the_user_should_see_the_sub_category_page() {
-            // Assumption: Sub-Category name is also the page header
-            String subCategory = "Laptops"; // You can dynamically get this from the scenario context
-            boolean isDisplayed = categoryPage.isSubCategoryPageDisplayed(subCategory);
-            Assert.assertTrue("Sub-category page is not displayed!", isDisplayed);
-            driver.quit();
-        }
-
-        @When("The user navigates through the following tabs:")
-        public void the_user_navigates_through_the_following_tabs(List<String> tabs) {
-            for (String tab : tabs) {
-                categoryPage.hoverOverTab(tab);
-            }
-        }
-
-        @Then("Each tab should display the correct content")
-        public void each_tab_should_display_the_correct_content(List<String> tabs) {
-            for (String tab : tabs) {
-                boolean isContentDisplayed = categoryPage.isTabContentDisplayed(tab);
-                Assert.assertTrue("Content for tab " + tab + " is not displayed!", isContentDisplayed);
-            }
-            driver.quit();
-        }
-
-        @When("The user clicks on the following buttons:")
-        public void the_user_clicks_on_the_following_buttons(List<String> buttons) {
-            for (String button : buttons) {
-                categoryPage.clickButton(button);
-            }
-        }
-
-        @Then("Each button should navigate to the correct page")
-        public void each_button_should_navigate_to_the_correct_page(List<String> buttons) {
-            for (String button : buttons) {
-                boolean isNavigationCorrect = categoryPage.isButtonNavigationCorrect(button);
-                Assert.assertTrue("Navigation for button " + button + " is not correct!", isNavigationCorrect);
-            }
-            driver.quit();
-        }
     }
+
+    @When("The user can see the sub categories")
+    public void theUserCanSeeTheSubCategories() {
+        Assert.assertEquals(subCategoryPage.healthAndBeautyButton.getText(), "HEALTH & BEAUTY");
+        Assert.assertEquals(subCategoryPage.televisionsButton.getText(), "TELEVISIONS");
+        Assert.assertEquals(subCategoryPage.tvAccessoriesButton.getText(), "TV ACCESSORIES");
+        Assert.assertEquals(subCategoryPage.networkingButton.getText(), "NETWORKING");
+    }
+
+    @When("The user clicks on the 'Health & Beauty' sub-button")
+    public void theUserClicksOnTheHealthBeautySubButton() {
+        subCategoryPage.healthAndBeautyButton.click();
+    }
+
+    @Then("The user is on the Health & Beauty page")
+    public void theUserIsOnTheHealthBeautyPage() {
+        Assert.assertEquals(subCategoryPage.healthAndBeautyPage.getText(), "Health & Beauty");
+    }
+
+    @When("The user clicks on the 'Televisions' sub-button")
+    public void theUserClicksOnTheTelevisionsSubButton() {
+        subCategoryPage.televisionsButton.click();
+    }
+
+    @Then("The user is on the Televisions page")
+    public void theUserIsOnTheTelevisionsPage() {
+        Assert.assertEquals(subCategoryPage.televisionsPage.getText(), "Televisions");
+    }
+
+    @When("The user clicks on the 'TV Accessories' sub-button")
+    public void theUserClicksOnTheTVAccessoriesSubButton() {
+        subCategoryPage.tvAccessoriesButton.click();
+    }
+
+    @Then("The user is on the TV Accessories page")
+    public void theUserIsOnTheTVAccessoriesPage() {
+        Assert.assertEquals(subCategoryPage.tvAccessoriesPage.getText(), "TV Accessories");
+    }
+
+    @When("The user clicks on the 'Networking' sub-button")
+    public void theUserClicksOnTheNetworkingSubButton() {
+        subCategoryPage.networkingButton.click();
+    }
+
+    @Then("The user is on the Networking page")
+    public void theUserIsOnTheNetworkingPage() {
+        Assert.assertEquals(subCategoryPage.networkingPage.getText(), "Networking");
+    }
+
+}
+
+
+
+
+
 
 

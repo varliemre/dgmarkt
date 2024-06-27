@@ -1,71 +1,41 @@
 package com.dgmarkt.pages;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CategoryPage extends BasePage {
+    @FindBy(xpath = "//span[text()='Category']")
+    public WebElement categoryButton;
 
-        WebDriver driver;
+    @FindBy(xpath = "(//a[text()='Health & Beauty'])[1]")
+    public WebElement healthAndBeautyButton;
 
-        // Constructor
-        public CategoryPage(WebDriver driver) {
-            this.driver = driver;
-        }
+    @FindBy(xpath = "(//a[text()='Televisions'])[1]")
+    public WebElement televisionsButton;
 
-        // Method to navigate to a category
-        public void navigateToCategory(String category) {
-            WebElement categoryElement = driver.findElement(By.xpath("//a[contains(text(),'" + category + "')]"));
-            categoryElement.click();
-        }
+    @FindBy(xpath = "(//a[text()='TV Accessories'])[1]")
+    public WebElement tvAccessoriesButton;
 
-        // Method to select a sub-category
-        public void selectSubCategory(String subCategory) {
-            WebElement subCategoryElement = driver.findElement(By.xpath("//a[contains(text(),'" + subCategory + "')]"));
-            subCategoryElement.click();
-        }
+    @FindBy(xpath = "(//a[text()='Networking'])[1]")
+    public WebElement networkingButton;
 
-        // Method to verify the sub-category page
-        public boolean isSubCategoryPageDisplayed(String subCategory) {
-            return driver.findElement(By.xpath("//h1[contains(text(),'" + subCategory + "')]")).isDisplayed();
-        }
+    @FindBy(xpath = "//h1[text()='Health & Beauty']")
+    public WebElement healthAndBeautyPage;
 
-        // Method to hover over a tab
-        public void hoverOverTab(String tabName) {
-            Actions actions = new Actions(driver);
-            WebElement tabElement = driver.findElement(By.xpath("//a[contains(text(),'" + tabName + "')]"));
-            actions.moveToElement(tabElement).perform();
-        }
+    @FindBy(xpath = "//h1[text()='Televisions']")
+    public WebElement televisionsPage;
 
-        // Method to verify tab content
-        public boolean isTabContentDisplayed(String tabName) {
-            return driver.findElement(By.xpath("//h2[contains(text(),'" + tabName + "')]")).isDisplayed();
-        }
+    @FindBy(xpath = "//h1[text()='TV Accessories']")
+    public WebElement tvAccessoriesPage;
 
-        // Method to click buttons
-        public void clickButton(String buttonName) {
-            WebElement buttonElement = driver.findElement(By.xpath("//button[contains(text(),'" + buttonName + "')]"));
-            buttonElement.click();
-        }
+    @FindBy(xpath = "//h1[text()='Networking']")
+    public WebElement networkingPage;
 
-        // Method to verify button navigation
-        public boolean isButtonNavigationCorrect(String expectedPage) {
-            return driver.findElement(By.xpath("//h1[contains(text(),'" + expectedPage + "')]")).isDisplayed();
-        }
-    }
+
+
+
+}
 
 
 
