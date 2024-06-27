@@ -3,7 +3,7 @@ package com.dgmarkt.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchBtn extends BasePage{
+public class SearchBtnPage extends BasePage{
     @FindBy(xpath = "//*[text()='shopping cart']")
     public WebElement shoppingCartLink;
 

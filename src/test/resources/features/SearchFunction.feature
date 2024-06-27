@@ -3,6 +3,7 @@ Feature: Search Icon Function
   Background:
     Given The user is on the Home page
 
+
   Scenario: Product is displayed when the user searches for the item on the website
     Given The user clicks to "Search button"
     Then The user clicks the "Search area"

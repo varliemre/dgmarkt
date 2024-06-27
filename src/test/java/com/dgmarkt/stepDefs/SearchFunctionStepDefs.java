@@ -1,16 +1,15 @@
 package com.dgmarkt.stepDefs;
 import com.dgmarkt.pages.LoginPanel;
-import com.dgmarkt.pages.SearchBtn;
+import com.dgmarkt.pages.SearchBtnPage;
 import com.dgmarkt.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 
 public class SearchFunctionStepDefs {
     LoginPanel loginPanel = new LoginPanel();
-    SearchBtn searchbtn= new SearchBtn();
+    SearchBtnPage searchbtn= new SearchBtnPage();
 
 
 
@@ -62,7 +61,6 @@ public class SearchFunctionStepDefs {
     public void verifyThatMessageIsDisplayed(String productNotFoundMsg) throws InterruptedException {
 
         BrowserUtils.scrollToElement(searchbtn.productNotFoundMsg);
-
         Assert.assertTrue(searchbtn.productNotFoundMsg.isDisplayed());
 
     }
