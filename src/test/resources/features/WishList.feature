@@ -17,11 +17,13 @@ Feature: My Account-User can Modify wish list
 
   @wish
   Scenario: Verify that the user should not be able to access to wish list when logged out.
-    When The user clicks My Account dropdown
-    And The user clicks Logout button
-    And The user should see continue button and clicks continue button
+    When The user clicks wish list link
+    And The user clicks My Account dropdown button and clicks Logout button
     And The user clicks wish list icon
-    Then The user should see the returning customer message
+    Then The user should see a message after trying to navigate to wish list
+
+
+
 
 
 

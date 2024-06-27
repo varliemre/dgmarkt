@@ -2,6 +2,8 @@ package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
+import io.cucumber.java.en_old.Ac;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -24,5 +26,13 @@ public class HomePage extends BasePage{
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", wishlistIcon);
 
     }
+    @FindBy(xpath = "//h2[text()='Returning Customer']")
+    public WebElement loginMessageNewLoginStepl;
+
+    public void loginMessageNewLoginStep(){
+        String actualMessage="Returning Customer";
+        Assert.assertEquals(loginMessageNewLoginStepl.getText(),actualMessage);
+    }
+
 
 }

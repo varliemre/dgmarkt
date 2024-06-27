@@ -17,13 +17,13 @@ public class Logout_StepDefs extends BasePage {
     @When("The user clicks continue button for Logout")
     public void the_user_clicks_continue_button_for_logout() {
         logoutContinueBtn.click();
-        newsletterCloseBtn.click();
+       // newsletterCloseBtn.click();
     }
     @When("The user clicks back button")
     public void the_user_clicks_back_button() {
         Driver.get().navigate().back();
         BrowserUtils.waitFor(3);
-        newsletterCloseBtn.click();
+        //newsletterCloseBtn.click();
     }
     @Then("The user verifies that user is logged out")
     public void the_user_verifies_that_user_is_logged_out() {

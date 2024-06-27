@@ -26,8 +26,10 @@ public class WishList_StepDefs {
     public void the_user_clicks_wish_list_icon() {
         homePage.clickWishListIcon();
     }
+    @Then("The user should see a message after trying to navigate to wish list")
+    public void the_user_should_see_a_message_after_trying_to_navigate_to_wish_list() {
+        homePage.loginMessageNewLoginStep();
 
-
-
+    }
 
 }
