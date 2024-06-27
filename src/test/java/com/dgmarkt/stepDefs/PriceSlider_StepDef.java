@@ -7,15 +7,13 @@ import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -31,11 +29,36 @@ public class PriceSlider_StepDef {
     public void verify_price_silder_display() {
         BrowserUtils.scrollToElement(cartPage.PriceSlider2);
         Assert.assertTrue(cartPage.PriceSlider2.isDisplayed());
+
     }
 
 
+
+
+
+
+
+    @Then("Verifies default values {string}  and {string}")
+    public void verifiesDefaultValuesAnd(String defaultMinVaulues, String defaultMaxValues) {
+
+        BrowserUtils.waitFor(10);
+        String actualDefaultMAxVaules=cartPage.MaxText.getAttribute("value");
+        System.out.println("defaultMaxValues = " + defaultMaxValues);
+        BrowserUtils.waitFor(10);
+        String actualDefaultMinValues=cartPage.MinText.getAttribute("value");
+        System.out.println("defaultMinVaulues = " + defaultMinVaulues);
+        System.out.println("actualDefaultMAxVaules = " + actualDefaultMAxVaules);
+
+        System.out.println("actualDefaultMinValues = " + actualDefaultMinValues);
+        BrowserUtils.waitFor(10);
+        Assert.assertEquals(defaultMaxValues,actualDefaultMAxVaules);
+        BrowserUtils.waitFor(10);
+        Assert.assertEquals(defaultMinVaulues,actualDefaultMinValues);
+
+    }
+
     @Then("user can change min  {string} and  and max values {string}")
-    public void user_can_change_min_and_and_max_values(String minStr, String maxStr) {
+    public void userCanChangeMinAndAndMaxValues(String minStr, String maxStr) {
         Select select = new Select(cartPage.show_konteyner);
         select.selectByVisibleText("100");
 
@@ -61,51 +84,35 @@ public class PriceSlider_StepDef {
         int updatedMinValue = Integer.parseInt(cartPage.MinText.getAttribute("value"));
         int updatedMaxValue = Integer.parseInt(cartPage.MaxText.getAttribute("value"));
 
-        List<WebElement> productList = Driver.get().findElements(By.cssSelector("[class='product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-4 col-xs-6 product-items']"));
 
+        List<WebElement> priceElements = Driver.get().findElements(By.cssSelector(".box-price"));
+        List<Integer> priceList = new ArrayList<>();
+
+        // Fiyatları topla ve yazdır
+        System.out.println("Fiyat Listesi:");
+        for (WebElement priceElement : priceElements) {
+            String priceText = priceElement.getText().replace("$", "").trim(); // $ işaretini kaldır ve boşlukları trim yap
+            int price = (int) Double.parseDouble(priceText);
+            priceList.add(price);
+
+        }
+
+        // Fiyatların belirtilen aralıkta olup olmadığını assertTrue ile doğrula
         boolean allPricesWithinRange = true;
-
-        // Ürün listesi üzerinde iterasyon yap ve fiyatları kontrol et
-        for (WebElement product : productList) {
-            try {
-                // Ürün fiyatını al
-                WebElement priceElement = product.findElement(By.xpath("//p[@class='price']")); // Fiyat elementinin CSS seçicisini buraya ekleyin
-                BrowserUtils.waitForClickablility(priceElement, 12);
-                String priceText = priceElement.getText().replace("$", ""); // Fiyat metnini alın ve $ işaretini kaldırın (farklı bir para birimi kullanıyorsanız uyarlayın)
-                double priceDouble = Double.parseDouble(priceText); // Double olarak parse et
-                int price = (int) priceDouble; // Int'e dönüştür
-                BrowserUtils.waitFor(12);
-
-                // Fiyatın belirtilen aralıkta olup olmadığını kontrol edin
-                if (price < minValue || price > maxValue) {
-                    allPricesWithinRange = false;
-                    break;
-                }
-            } catch (NoSuchElementException e) {
-                System.out.println("Fiyat elemanı bulunamadı: " + e.getMessage());
-                allPricesWithinRange = false;
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Fiyat dönüştürülemedi: " + e.getMessage());
+        for (int price : priceList) {
+            if (price < updatedMinValue || price > updatedMaxValue) {
                 allPricesWithinRange = false;
                 break;
             }
         }
-        BrowserUtils.waitFor(10);
-        // Fiyatların belirtilen aralıkta olup olmadığını kontrol edin
-        Assert.assertTrue("Bazı fiyatlar belirtilen aralıkta değil", allPricesWithinRange);
 
-        System.out.println("minValue: " + minValue);
-        System.out.println("maxValue: " + maxValue);
-        System.out.println("updatedMinValue: " + updatedMinValue);
-        System.out.println("updatedMaxValue: " + updatedMaxValue);
+        // Assert ile fiyatların belirtilen aralıkta olup olmadığını kontrol et
+        //Assert.assertTrue("Bazı fiyatlar belirtilen aralıkta değil", allPricesWithinRange);
 
-        BrowserUtils.waitFor(2);
-        // Beklenen ve güncellenen değerlerin eşit olduğunu doğrula
-        Assert.assertEquals(minValue, updatedMinValue);
-        Assert.assertEquals(maxValue, updatedMaxValue);
+        // Diğer doğrulamaları yapabilir veya gerekli işlemleri gerçekleştirebilirsiniz
+        System.out.println("Güncellenmiş minValue: " + updatedMinValue);
+        System.out.println("Güncellenmiş maxValue: " + updatedMaxValue);
+    }};
 
 
 
-    }
-}

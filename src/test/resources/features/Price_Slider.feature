@@ -12,7 +12,7 @@ Feature:As a user, I should be able to bring the products in the price range I w
     And The user clicks on the login button
 
   @B13DGMRAU-61
-Scenario Outline: Verify that the price slider is displayed in categories
+  Scenario Outline: Verify that the price slider is displayed in categories
     When The user selects a "<subcategory>"
     Then Verify price silder display
 
@@ -29,9 +29,20 @@ Scenario Outline: Verify that the price slider is displayed in categories
     Then user can change min  "<minValue>" and  and max values "<maximumValue>"
     Examples:
       | subcategory     | minValue | maximumValue |
-      | Televisions     | 130    | 300         |
-      #| TV Accessories  | 125      | 480          |
-      #| Networking      | 125      | 480          |
-     # | Health & Beauty | 125      | 480          |
+      | TV Accessories  | 160      | 306          |
+      | Networking      | 125      | 480          |
+      | Televisions     | 250      | 350          |
+      | Health & Beauty | 299     | 399        |
 
+  @B13DGMRAU-66
+
+  Scenario Outline: Price slider validates default values
+    When The user selects a "<subcategory>"
+    Then Verifies default values "<defaultMinumumVaulues>"  and "<defaultMaxValues>"
+    Examples:
+      | subcategory     | defaultMinumumVaulues | defaultMaxValues |
+      | Health & Beauty | 102                   | 485              |
+      | Televisions     | 103                   | 500              |
+      | TV Accessories  | 104                   | 498              |
+      | Networking      | 105                   | 499              |
 
