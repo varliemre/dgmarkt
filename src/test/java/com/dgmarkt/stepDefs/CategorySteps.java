@@ -9,6 +9,13 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import org.junit.Assert;
 
 import java.util.List;
 
@@ -17,8 +24,9 @@ public class CategorySteps {
         WebDriver driver;
         CategoryPage categoryPage;
 
-        @Given("user is on the DGMarkt homepage")
-        public void user_is_on_the_dgmarkt_homepage() {
+        @Given("The user is on the Home page")
+        public void the_user_is_on_the_home_page() {
+            // Initialize the WebDriver
             driver = new ChromeDriver();
             driver.get("https://dgmarkt.com/");
             categoryPage = new CategoryPage(driver);
@@ -33,21 +41,20 @@ public class CategorySteps {
         public void the_user_selects_the_sub_category(String subCategory) {
             categoryPage.selectSubCategory(subCategory);
         }
-        //
+
         @Then("The user should see the Sub-Category page")
         public void the_user_should_see_the_sub_category_page() {
-
-            String subCategory = "Networking";
+            // Assumption: Sub-Category name is also the page header
+            String subCategory = "Laptops"; // You can dynamically get this from the scenario context
             boolean isDisplayed = categoryPage.isSubCategoryPageDisplayed(subCategory);
             Assert.assertTrue("Sub-category page is not displayed!", isDisplayed);
             driver.quit();
         }
 
-        //
         @When("The user navigates through the following tabs:")
         public void the_user_navigates_through_the_following_tabs(List<String> tabs) {
             for (String tab : tabs) {
-                categoryPage.navigateThroughTabs(tab);
+                categoryPage.hoverOverTab(tab);
             }
         }
 

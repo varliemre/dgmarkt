@@ -1,9 +1,9 @@
 Feature: Category Module
-
+  @B13DGMRAU-46
   Background:
     Given The user is on the Home page
 
-  @B13DGMRAU-46
+
   Scenario: Navigate to Sub-Category
     When The user navigates to the "Category Name" category
     And The user selects the "Sub-Category Name" sub-category
