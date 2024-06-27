@@ -22,14 +22,16 @@ public abstract class BasePage {
     @FindBy(xpath = "(//h2[text()='Login or create an account'])[1]")
     public WebElement loginMessage;
 
+     @FindBy(css = ".cbk_newsletter" )
+     public WebElement dontShowAgain;
+
+
 
     public void navigateMyAccount(String menuName){
         BrowserUtils.waitForClickablility(myAccountDropDown,10);
         myAccountDropDown.click();
         Driver.get().findElement(By.xpath("//a[text()='"+ menuName+ "']")).click();
     }
-
-
 
 
 

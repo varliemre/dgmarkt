@@ -22,13 +22,13 @@ public class CategorySteps {
     WebDriver driver;
     CategoryPage categoryPage;
 
-    @Given("The user is on the home page")
-    public void the_user_is_on_the_home_page() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://dgmarkt.com/");
-        categoryPage = new CategoryPage(driver);
-    }
+//    @Given("The user is on the home page")
+//    public void the_user_is_on_the_home_page() {
+//        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+//        driver = new ChromeDriver();
+//        driver.get("https://dgmarkt.com/");
+//        categoryPage = new CategoryPage(driver);
+//    }
 
     @When("The user hovers over the Category tab")
     public void the_user_hovers_over_the_category_tab() {

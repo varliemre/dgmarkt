@@ -1,9 +1,12 @@
 package com.dgmarkt.pages;
 
+import com.dgmarkt.utilities.BrowserUtils;
+import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,10 +18,10 @@ public class CategoryPage extends BasePage{
 
     WebDriver driver;
 
-    public CategoryPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+//    public CategoryPage(WebDriver driver) {
+//        this.driver = driver;
+//        PageFactory.initElements(driver, this);
+//    }
 
     @FindBy(xpath = "//*[@id=\"pt-menu-4885\"]/ul/li[2]/a/span")
     WebElement categoryTab;
@@ -39,10 +42,6 @@ public class CategoryPage extends BasePage{
         subCategoryTab.click();
     }
 
-
-
-    @FindBy(css = "a.a-mega-second-link[href*='path=59']")
-    WebElement NetworkingTab;
 
 
 }
