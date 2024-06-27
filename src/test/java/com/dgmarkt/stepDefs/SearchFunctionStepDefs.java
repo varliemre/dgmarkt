@@ -11,8 +11,6 @@ public class SearchFunctionStepDefs {
     LoginPanel loginPanel = new LoginPanel();
     SearchBtnPage searchbtn= new SearchBtnPage();
 
-
-
     @Given("The user clicks to {string}")
     public void the_user_clicks_to(String searchButton) {
         searchbtn.searchButton.click();

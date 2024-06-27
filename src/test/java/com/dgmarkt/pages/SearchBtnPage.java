@@ -10,6 +10,8 @@ public class SearchBtnPage extends BasePage{
 
     @FindBy(xpath = "//*[text()=' Success: You have added ']")
     public WebElement successfullyAddedMessage;
+
+
     @FindBy(xpath = "//*[@name='search']")
     public WebElement searchArea;
 
