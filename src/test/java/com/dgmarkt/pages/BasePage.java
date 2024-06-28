@@ -18,10 +18,6 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[text()='My Account']")
     public WebElement myAccountDropDown;
 
-    @FindBy(xpath = "(//button[@class='button'])[2]/*")
-    public WebElement logoutContinueBtn;
-    @FindBy(xpath = "(//h2[text()='Login or create an account'])[1]")
-    public WebElement loginMessage;
 
 
     public void navigateMyAccount(String menuName){
