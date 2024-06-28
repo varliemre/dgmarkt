@@ -8,9 +8,16 @@ import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import static java.lang.Integer.parseInt;
 
 public class PriceSlider_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -30,18 +37,18 @@ public class PriceSlider_StepDef {
     public void verifiesDefaultValuesAnd(String defaultMinVaulues, String defaultMaxValues) {
 
         BrowserUtils.waitFor(10);
-        String actualDefaultMAxVaules=cartPage.MaxText.getAttribute("value");
+        String actualDefaultMAxVaules = cartPage.MaxText.getAttribute("value");
         System.out.println("defaultMaxValues = " + defaultMaxValues);
         BrowserUtils.waitFor(10);
-        String actualDefaultMinValues=cartPage.MinText.getAttribute("value");
+        String actualDefaultMinValues = cartPage.MinText.getAttribute("value");
         System.out.println("defaultMinVaulues = " + defaultMinVaulues);
         System.out.println("actualDefaultMAxVaules = " + actualDefaultMAxVaules);
 
         System.out.println("actualDefaultMinValues = " + actualDefaultMinValues);
         BrowserUtils.waitFor(10);
-        Assert.assertEquals(defaultMaxValues,actualDefaultMAxVaules);
+        Assert.assertEquals(defaultMaxValues, actualDefaultMAxVaules);
         BrowserUtils.waitFor(10);
-        Assert.assertEquals(defaultMinVaulues,actualDefaultMinValues);
+        Assert.assertEquals(defaultMinVaulues, actualDefaultMinValues);
 
     }
 
@@ -100,7 +107,8 @@ public class PriceSlider_StepDef {
         // Diğer doğrulamaları yapabilir veya gerekli işlemleri gerçekleştirebilirsiniz
         System.out.println("Güncellenmiş minValue: " + updatedMinValue);
         System.out.println("Güncellenmiş maxValue: " + updatedMaxValue);
-    }};
+    }
+};
 
 
 

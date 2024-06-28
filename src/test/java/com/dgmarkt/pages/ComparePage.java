@@ -6,7 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ComparePage extends BasePage{
+public class ComparePage extends BasePage {
     @FindBy(tagName = "h1")
     public WebElement ProductComparisonText;
 

@@ -1,13 +1,15 @@
 package com.dgmarkt.pages;
+
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
 import java.util.List;
 
-public class CategoryPage extends BasePage{
+public class CategoryPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Category']")
     public WebElement categoryButton;
@@ -34,14 +36,12 @@ public class CategoryPage extends BasePage{
 
     @FindBy(xpath = "//h1[text()='TV Accessories']")
     public WebElement tvAccessoriesPage;
-  
+
     @FindBy(xpath = "//div[@class='caption']")
     public List<WebElement> productCaptions;
-    
+
     @FindBy(xpath = "//h1[text()='Networking']")
     public WebElement networkingPage;
-
-
 
 
     public void navigateToPageOrClickAButton(String text) {
@@ -66,8 +66,6 @@ public class CategoryPage extends BasePage{
         Driver.get().findElement(By.xpath("(//*[@class='button-wishlist'])[" + (timer + 1) + "]")).click();
         BrowserUtils.waitFor(2);
     }
-
-    
 
 
 }

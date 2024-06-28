@@ -1,7 +1,5 @@
 Feature: Category Module
 
-  @wip
-
   Background:
     Given The user is on the Home page
 
