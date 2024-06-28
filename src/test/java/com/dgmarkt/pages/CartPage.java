@@ -2,6 +2,7 @@ package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import javax.annotation.Nullable;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Predicate;
@@ -38,9 +39,9 @@ public class CartPage extends BasePage {
         WebElement catagoryHover = Driver.get().findElement(By.xpath("//*[.='Category']"));
         BrowserUtils.waitForClickablility(catagoryHover, 5);
         Actions actions = new Actions(Driver.get());
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
         actions.moveToElement(catagoryHover).perform();
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
 
 
         WebElement submenuWebElement = Driver.get().findElement(By.xpath("//a[contains(@class, 'a-mega-second-link') and text()='" + subCatagoryName + "']"));
@@ -48,100 +49,115 @@ public class CartPage extends BasePage {
 
     }
 
-    public void select_product(String productName) {
+    public void select_product(String productNAme) {
         Select select = new Select(show_konteyner);
-        BrowserUtils.waitFor(11);
         select.selectByVisibleText("100");
+        //BrowserUtils.waitFor(25);
 
-        BrowserUtils.waitFor(32);
-
-        //WebElement productLocator = Driver.get().findElement(By.xpath("//h4[.='" + productName + "']"));
-        WebElement productLocator = Driver.get().findElement(By.xpath("//img[@alt='" + productName + "']"));
-
-
-// JavaScriptExecutor ile elementin görünür olmasını sağla
+        WebElement selectproduct = Driver.get().findElement(By.xpath("//a[.='" + productNAme + "']"));
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-        jse.executeScript("arguments[0].scrollIntoView(true);", productLocator);
+        jse.executeScript("arguments[0].scrollIntoView(true);", selectproduct);
 
-
-// Beklemeyi bir süre daha uzat, tıklanabilir olmasını bekle
-        BrowserUtils.waitFor(35); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
-
-
+        //BrowserUtils.waitForClickablility(selectproduct, 20);
+        // BrowserUtils.clickWithJS(selectproduct);
         try {
-            productLocator.click();
-        } catch (ElementClickInterceptedException e) {
-            BrowserUtils.waitFor(12);
-            // Eğer tıklama başarısız olursa, JavaScript kullanarak tıklamayı deneyin
-            jse.executeScript("arguments[0].click();", productLocator);
+            BrowserUtils.clickWithJS(selectproduct);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+
         }
+
     }
 
-
     public void add_to_cart() {
-        //WebElement add_to_cart_l = Driver.get().findElement(By.id("button-cart"));
-        WebElement add_to_cart_l = Driver.get().findElement(By.xpath("//*[@id='button-cart']"));
-        BrowserUtils.waitForClickablility(add_to_cart_l, 33);
+        WebElement add_to_cart_l = Driver.get().findElement(By.xpath("//*[.='Add to Cart']"));
 
-// JavaScriptExecutor ile elementin görünür olmasını sağla
+        BrowserUtils.waitForClickablility(add_to_cart_l, 45);
+
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         jse.executeScript("arguments[0].scrollIntoView(true);", add_to_cart_l);
 
-// Beklemeyi bir süre daha uzat, tıklanabilir olmasını bekle
-        BrowserUtils.waitFor(60); // Bu süreyi ihtiyaca göre ayarlayabilirsiniz
 
         try {
-            // Click the "Add to Cart" button
             BrowserUtils.clickWithJS(add_to_cart_l);
-
-            // Optional: Handle any pop-ups or alerts that appear after clicking "Add to Cart"
-            // Example: If there's a confirmation popup, handle it using WebDriver's switchTo() method
-
-            // Example: Navigating to the Cart page after adding the item
-            // Assuming there's a link or button that navigates to the Cart page, you'd do something like:
-            // WebElement cart_link = Driver.get().findElement(By.xpath("//a[@id='cart-link']"));
-            // cart_link.click();
-
-            // Example: Verification that the item was successfully added to the cart
-            // You might assert the presence of a success message or check the cart contents
-
+            BrowserUtils.waitForClickablility(add_to_cart_l, 20);
         } catch (Exception e) {
-            // Handle any exceptions that occur during the add to cart process
             e.printStackTrace();
-            // You might want to log the error or handle it gracefully
+
         }
     }
 
 
-        public void removeAllItemsFromCart() {
-            // Öğeleri bul
-            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+    public void removeAllItemsFromCart() {
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
 
-            for (int i = 0; i < elements.size(); i++) {
-                // "Kaldır" butonunun tıklanabilir olmasını bekle
-                WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(20));
-                WebElement removeButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-original-title='Remove']")));
+        // Tüm öğeler kaldırılıncaya kadar döngüyü çalıştır
+        while (!elements.isEmpty()) {
+            // Listenin ilk öğesini al ve "Remove" düğmesini bul
+            WebElement element = elements.get(0);
+            WebElement removeButton = element.findElement(By.cssSelector("[data-original-title='Remove']"));
 
-                try {
-                    // "Kaldır" butonuna tıkla
-                    removeButton.click();
+            // "Remove" düğmesine tıkla
+            removeButton.click();
 
-                    // Kaldırma işlemi tamamlanana kadar bekle
-                    wait.until(ExpectedConditions.stalenessOf(elements.get(i)));
+            // Öğenin sayfanın dışına çıkması bekleniyor
+            WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(20));
+            wait.until(ExpectedConditions.stalenessOf(element));
 
-                    // Kalan öğeleri tekrar bul
-                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-                } catch (Exception e) {
-                    // Herhangi bir hata durumunda, öğeleri tekrar bul
-                    elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-                    // İndeksi ayarla
-                    i--;
-                }
-            }
+            // Kalan öğeleri tekrar bul
+            elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
         }
+    }
+
+    public boolean isCartEmpty() {
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
+        return elements.isEmpty();
+    }
+
+
+
+    ////////////////////////////////////////////////////////für Price Silider
+
+
+    @FindBy(xpath = "//div[@id='slider-price']")
+    public WebElement PriceSlider2;
+
+    @FindBy(xpath = "//input[@placeholder='Min']")
+    public WebElement MinText;
+  
+  @FindBy(id = "cart")
+    public WebElement cartButton;
+
+    public void userClicksToCartButton() {
+        cartButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @FindBy(xpath = "//input[@placeholder='Max']")
+    public WebElement MaxText;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[1]")
+    public WebElement PriceSliderMin;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[2]")
+    public WebElement PriceSliderMax;
+
+    @FindBy(css = "[class='product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-4 col-xs-6 product-items']")
+    public WebElement ProductList;
+
 
         public boolean isCartEmpty() {
             List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
             return elements.isEmpty();
         }
+        //-------------
+
+    public void valitadateThatTheProductInCart(String expectedProduct) {
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(Driver.get().findElement(By.xpath("//td//a[text()='" + expectedProduct + "']")).isDisplayed());
     }
+    
+
+
+}
