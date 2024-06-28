@@ -2,8 +2,12 @@ package com.dgmarkt.stepDefs;
 
 
 import com.dgmarkt.pages.CategoryPage;
+import com.dgmarkt.utilities.BrowserUtils;
+import com.dgmarkt.utilities.Driver;
+import io.cucumber.java.en.And;
 import com.dgmarkt.pages.HomePage;
 import com.dgmarkt.utilities.Driver;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +24,12 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
 
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 public class CategorySteps {
@@ -44,10 +54,20 @@ public class CategorySteps {
         Assert.assertEquals(subCategoryPage.networkingButton.getText(), "NETWORKING");
     }
 
+
+//    @Given("The user is on the home page")
+//    public void the_user_is_on_the_home_page() {
+//        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+//        driver = new ChromeDriver();
+//        driver.get("https://dgmarkt.com/");
+//        categoryPage = new CategoryPage(driver);
+//    }
+
     @When("The user clicks on the 'Health & Beauty' sub-button")
     public void theUserClicksOnTheHealthBeautySubButton() {
         subCategoryPage.healthAndBeautyButton.click();
     }
+
 
     @Then("The user is on the Health & Beauty page")
     public void theUserIsOnTheHealthBeautyPage() {
@@ -82,6 +102,7 @@ public class CategorySteps {
     @Then("The user is on the Networking page")
     public void theUserIsOnTheNetworkingPage() {
         Assert.assertEquals(subCategoryPage.networkingPage.getText(), "Networking");
+
     }
 
 }

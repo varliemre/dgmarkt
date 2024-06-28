@@ -19,6 +19,10 @@ public abstract class BasePage {
     public WebElement myAccountDropDown;
 
 
+     @FindBy(css = ".cbk_newsletter" )
+     public WebElement dontShowAgain;
+
+
 
     public void navigateMyAccount(String menuName){
         BrowserUtils.waitForClickablility(myAccountDropDown,20);
@@ -26,8 +30,6 @@ public abstract class BasePage {
         jse.executeScript("arguments[0].click();", myAccountDropDown);
         Driver.get().findElement(By.xpath("//a[text()='"+ menuName+ "']")).click();
     }
-
-
 
 
 
