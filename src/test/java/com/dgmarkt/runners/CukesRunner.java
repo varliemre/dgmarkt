@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
         dryRun =false,
         tags =  "@B13DGMRAU-66"
 
-
 )
 public class CukesRunner {
 }

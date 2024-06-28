@@ -1,28 +1,30 @@
 Feature: Category Module
 
+  @wip
 
-  Scenario: Navigate to Sub-Category
-    When The user navigates to the "Category Name" category
-    And The user selects the "Sub-Category Name" sub-category
-    Then The user should see the Sub-Category page
+  Background:
+    Given The user is on the Home page
 
-  Scenario: Navigate through Sub-Category Tabs
-    When The user navigates to the "Category Name" category
-    And The user selects the "Sub-Category Name" sub-category
-    And The user navigates through the following tabs:
-      | Tab Name  |
-      | Tab 1     |
-      | Tab 2     |
-      | Tab 3     |
-    Then Each tab should display the correct content
+  Scenario: User can go to the Category button to see the Sub-Category page without clicking
+    Given The user moves to Category button
+    When The user can see the sub categories
 
-  Scenario: Click buttons and verify navigation
-    When The user navigates to the "Category Name" category
-    And The user selects the "Sub-Category Name" sub-category
-    And The user clicks on the following buttons:
-      | Button Name  |
-      | Button 1     |
-      | Button 2     |
-      | Button 3     |
-    Then Each button should navigate to the correct page
+  Scenario: User can click on the 'Health & Beauty' sub-button under the Category button
+    Given The user moves to Category button
+    When The user clicks on the 'Health & Beauty' sub-button
+    Then The user is on the Health & Beauty page
 
+  Scenario: User can click on the 'Televisions' sub-button under the Category button
+    Given The user moves to Category button
+    When The user clicks on the 'Televisions' sub-button
+    Then The user is on the Televisions page
+
+  Scenario: User can click on the 'TV Accessories' sub-button under the Category button
+    Given The user moves to Category button
+    When The user clicks on the 'TV Accessories' sub-button
+    Then The user is on the TV Accessories page
+
+  Scenario: User can click on the 'Networking' sub-button under the Category button
+    Given The user moves to Category button
+    When The user clicks on the 'Networking' sub-button
+    Then The user is on the Networking page
