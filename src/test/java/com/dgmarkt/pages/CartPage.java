@@ -2,6 +2,7 @@ package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -144,4 +145,17 @@ public class CartPage extends BasePage {
             List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
             return elements.isEmpty();
         }
+        //-------------
+
+    public void valitadateThatTheProductInCart(String expectedProduct) {
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(Driver.get().findElement(By.xpath("//td//a[text()='" + expectedProduct + "']")).isDisplayed());
     }
+    @FindBy(id = "cart")
+    public WebElement cartButton;
+
+    public void userClicksToCartButton() {
+        cartButton.click();
+        BrowserUtils.waitFor(2);
+    }
+}

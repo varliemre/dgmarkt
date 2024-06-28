@@ -34,5 +34,17 @@ public class HomePage extends BasePage{
         Assert.assertEquals(loginMessageNewLoginStepl.getText(),actualMessage);
     }
 
+//-----------
+
+    public void hoverOverToMenuHeadersAndSubMenuHeaders(String menuHeader, String subMenuHeader) {
+        BrowserUtils.waitFor(2);
+        new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.xpath("//span[text()='" + menuHeader + "']"))).perform();
+
+
+        Driver.get().findElement(By.xpath("//*[text()='" + subMenuHeader + "']")).click();
+        BrowserUtils.waitFor(1);
+
+    }
+
 
 }
