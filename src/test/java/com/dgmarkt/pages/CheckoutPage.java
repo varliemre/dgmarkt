@@ -89,7 +89,7 @@ public class CheckoutPage extends BasePage {
     public WebElement I_want_to_use_a_new_billing_address_l;
 
 
-    @FindBy(xpath = "(//*[@name='shipping_address'])[2]")
+    @FindBy(xpath = "(//input[@value='new'])[2]")
     public WebElement I_want_to_use_a_new_delivery_address_l;
 
     @FindBy(css = "[id='input-payment-firstname']")
@@ -219,7 +219,7 @@ public class CheckoutPage extends BasePage {
 
     public void delivery_adress_list_fill(String firstName, String lastName, String address1,
                                           String city, String postCode) {
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(30);
         delivery_first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(1);
         delivery_last_name_l.sendKeys(lastName);

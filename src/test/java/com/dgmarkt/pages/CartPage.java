@@ -38,9 +38,9 @@ public class CartPage extends BasePage {
         WebElement catagoryHover = Driver.get().findElement(By.xpath("//*[.='Category']"));
         BrowserUtils.waitForClickablility(catagoryHover, 5);
         Actions actions = new Actions(Driver.get());
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
         actions.moveToElement(catagoryHover).perform();
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(3);
 
 
         WebElement submenuWebElement = Driver.get().findElement(By.xpath("//a[contains(@class, 'a-mega-second-link') and text()='" + subCatagoryName + "']"));
@@ -113,4 +113,28 @@ public class CartPage extends BasePage {
         List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
         return elements.isEmpty();
     }
+
+
+
+    ////////////////////////////////////////////////////////für Price Silider
+
+
+    @FindBy(xpath = "//div[@id='slider-price']")
+    public WebElement PriceSlider2;
+
+    @FindBy(xpath = "//input[@placeholder='Min']")
+    public WebElement MinText;
+
+    @FindBy(xpath = "//input[@placeholder='Max']")
+    public WebElement MaxText;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[1]")
+    public WebElement PriceSliderMin;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[2]")
+    public WebElement PriceSliderMax;
+
+    @FindBy(css = "[class='product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-4 col-xs-6 product-items']")
+    public WebElement ProductList;
+
 }

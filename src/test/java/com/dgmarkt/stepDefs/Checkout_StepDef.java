@@ -10,8 +10,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.time.Duration;
 
 public class Checkout_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -47,34 +54,53 @@ public class Checkout_StepDef {
 
     @When("The user sees the shipping costs by entering the country address information")
     public void the_user_sees_the_shipping_costs_by_entering_the_country_address_information() {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(10));
+        WebElement estimateElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href='#collapse-shipping']")));
+        estimateElement.click();
 
-        BrowserUtils.scrollToElement(checkoutPage.shipping_l);
-        BrowserUtils.waitForClickablility(checkoutPage.shipping_l, 60);
-        BrowserUtils.clickWithJS(checkoutPage.shipping_l);
-
-
-        Select select = new Select(checkoutPage.country_l);
-        select.selectByVisibleText("Turkey");
+        Select countrySelect = new Select(checkoutPage.country_l);
+        countrySelect.selectByVisibleText("Turkey");
         BrowserUtils.waitFor(5);
 
-        Select select1 = new Select(checkoutPage.inputZone_l);
-        select1.selectByVisibleText("Adana");
+        Select zoneSelect = new Select(checkoutPage.inputZone_l);
+        zoneSelect.selectByVisibleText("Adana");
         BrowserUtils.waitFor(5);
+
 
         checkoutPage.postcode_l.clear();
         BrowserUtils.waitFor(5);
         checkoutPage.postcode_l.sendKeys("12345");
         BrowserUtils.waitFor(3);
+
+
         checkoutPage.button_quote_l.click();
         BrowserUtils.waitFor(3);
+
+
         checkoutPage.flat_radioBtn_l.click();
         BrowserUtils.waitFor(10);
+
+
         checkoutPage.apply_shipping_btn_l.click();
         BrowserUtils.waitFor(10);
+
+
+        // "Estimate Shipping & Taxes" öğesinin tıklanabilir olmasını bekleyin ve tıklayın
+        //WebElement estimateElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[.='Estimate Shipping & Taxes ']")));
+        // ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", estimateElement);
+
+        // Engelleyici öğeyi bulun ve gizleyin (XPath kullanarak)
+        // WebElement blockingElement = Driver.get().findElement(By.xpath("(//h4[@class='panel-title'])[2]"));
+        //((JavascriptExecutor) Driver.get()).executeScript("arguments[0].style.visibility='hidden'", blockingElement);
+
+    };
+
+
+    @Then("Verfy Success: Your shipping estimate has been applied mwssasge")
+    public void verfy_success_your_shipping_estimate_has_been_applied_mwssasge() {
         String actualMsg = checkoutPage.allert_succes_l.getText();
         String expectedMsg = "Success: Your shipping estimate has been applied!";
         Assert.assertTrue(actualMsg.contains(expectedMsg));
-
     }
 
     @When("User clicks the Checkout icon")
@@ -98,11 +124,11 @@ public class Checkout_StepDef {
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
         Select select = new Select(checkoutPage.adress_konteyner_billing_l);//mevcut adreslerden birisi secildi
-        BrowserUtils.waitFor(2);
-        select.selectByIndex(3);
+        BrowserUtils.waitFor(5);
+        select.selectByIndex(5);
 
         jse.executeScript("arguments[0].scrollIntoView(true);", checkoutPage.billing_continue_btn_l);
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(5);
 
 
         BrowserUtils.clickWithJS(checkoutPage.billing_continue_btn_l);
@@ -190,8 +216,12 @@ public class Checkout_StepDef {
         BrowserUtils.clickWithJS(checkoutPage.I_want_to_use_a_new_billing_address_l);
 
     }
+    @When("The user clicks I want to use a new delivery address address")
+    public void the_user_clicks_i_want_to_use_a_new_delivery_address_address() {
 
-    @When("The user clicks I want to use a new delivery address")
+
+
+    @When("The user clicks I want to use a new delivery address address")
     public void the_user_clicks_i_want_to_use_a_new_delivery_address() {
         //BrowserUtils.waitFor(2);
         // BrowserUtils.scrollToElement(checkoutPage.I_want_to_use_a_new_delivery_address_l);
@@ -215,7 +245,7 @@ public class Checkout_StepDef {
         String expectedmsg = warnungMesg;
         System.out.println("expectedmsg = " + expectedmsg);
         System.out.println("acturlerrorMsg = " + acturlerrorMsg);
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(5);
 
         Assert.assertEquals(expectedmsg, acturlerrorMsg);
 
