@@ -41,16 +41,7 @@ Feature: My Account-User can Modify wish list
       | productName        | productNamesInSuccessMessages | moduleName      |
       | CAPSULE PLATE 6PCS | Capsule Plate 6pcs            | Health & Beauty |
 
-##Bunda calisacgim
-  Scenario Outline: Verify that the user should NOT be able to add the products from wish list to cart
-    And The user hover overs to "Category" menu headers and clicks "<moduleName>" sub menu headers
-    And User adds "<productName>" item in his her wish list
-    And User clicks "Wish List"
-    Then The user verifies that out of stock products can not be added to cart
 
-    Examples:
-      | productName                   | moduleName      |
-      | BABYLISS 3663U - HAIR ROLLERS | Health & Beauty |
 
 
 
