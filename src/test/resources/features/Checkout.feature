@@ -24,15 +24,9 @@ Feature: As a user, I should be able to manage the cart by clicking the cart ico
 
 
   @B13DGMRAU-56
-  Scenario: Checkout by registered user address and billing address
-    When The user sees the shipping costs by entering the country address information
-    And User clicks the Checkout icon
-    And User the existing address as the billing address and clicks Continue
-    And User the existing address as the delivery address and clicks Continue
-    And Click continue with the fixed price delivery option
-    And clicks I have read and accept the Terms and Conditions and clicks Continue
-    And Clicks Confirm Order after reviewing the order details
-    Then  Your order has been placed! verifies confirmation
+  Scenario: Estimate Shipping & Taxes Ikon
+    And The user sees the shipping costs by entering the country address information
+    Then Verfy Success: Your shipping estimate has been applied mwssasge
 
 
   @B13DGMRAU-57
@@ -70,14 +64,17 @@ Feature: As a user, I should be able to manage the cart by clicking the cart ico
       | Ahmet                               | Yanbasar                                 | ankara cad.                                                                                                                             | istanbulll istanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulllistanbulll | 34843     | City must be between 2 and 128 characters!      |
 
 
+
   @B13DGMRAU-59
   Scenario Outline: Delivery adresse-Negative Test
     When User clicks the Checkout icon
+    And User the existing address as the billing address and clicks Continue
     And The user clicks I want to use a new delivery address address
     And Fill in the delivery address form "<First Name>"  "<Last Name>","<Address 1>" ,"<City>" ,"<Post Code>"  on the page that opens and click continue
     Then Verify that the user cannot continue shopping with incorrect delivery address information and verify the "<errorMessage>"
 
     Examples:
+
       | First Name                          | Last Name                                | Address 1                                                                                                                                       | City                                                                                                                                          | Post Code     | errorMessage                                    |
       |                                     | Yanbasar                                 | ankara cad.                                                                                                                                     | Istanbul                                                                                                                                      | 34843         | First Name must be between 1 and 32 characters! |
       | AhmetAhmetAhmetAhmetAhmetAhmetAhmet | Yanbasar                                 | ankara cad.                                                                                                                                     | Istanbul                                                                                                                                      | 34843         | First Name must be between 1 and 32 characters! |

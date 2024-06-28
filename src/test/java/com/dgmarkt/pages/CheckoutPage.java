@@ -89,7 +89,7 @@ public class CheckoutPage extends BasePage {
     public WebElement I_want_to_use_a_new_billing_address_l;
 
 
-    @FindBy(xpath = "(//*[@name='shipping_address'])[2]")
+    @FindBy(xpath = "(//input[@value='new'])[2]")
     public WebElement I_want_to_use_a_new_delivery_address_l;
 
     @FindBy(css = "[id='input-payment-firstname']")
