@@ -113,4 +113,28 @@ public class CartPage extends BasePage {
         List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
         return elements.isEmpty();
     }
+
+
+
+    ////////////////////////////////////////////////////////für Price Silider
+
+
+    @FindBy(xpath = "//div[@id='slider-price']")
+    public WebElement PriceSlider2;
+
+    @FindBy(xpath = "//input[@placeholder='Min']")
+    public WebElement MinText;
+
+    @FindBy(xpath = "//input[@placeholder='Max']")
+    public WebElement MaxText;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[1]")
+    public WebElement PriceSliderMin;
+
+    @FindBy(xpath = "(//div[@id='slider-price']//span)[2]")
+    public WebElement PriceSliderMax;
+
+    @FindBy(css = "[class='product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-4 col-xs-6 product-items']")
+    public WebElement ProductList;
+
 }

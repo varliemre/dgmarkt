@@ -219,7 +219,7 @@ public class CheckoutPage extends BasePage {
 
     public void delivery_adress_list_fill(String firstName, String lastName, String address1,
                                           String city, String postCode) {
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(30);
         delivery_first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(1);
         delivery_last_name_l.sendKeys(lastName);
