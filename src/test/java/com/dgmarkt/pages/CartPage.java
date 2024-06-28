@@ -1,5 +1,4 @@
 package com.dgmarkt.pages;
-
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import org.junit.Assert;
@@ -9,13 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-
 import java.time.Duration;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.function.Function;
 
 
 public class CartPage extends BasePage {

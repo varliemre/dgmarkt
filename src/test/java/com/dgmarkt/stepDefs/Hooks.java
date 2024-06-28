@@ -1,6 +1,5 @@
 package com.dgmarkt.stepDefs;
 
-import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.After;

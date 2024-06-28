@@ -2,35 +2,12 @@ package com.dgmarkt.stepDefs;
 
 
 import com.dgmarkt.pages.CategoryPage;
-import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
-import io.cucumber.java.en.And;
 import com.dgmarkt.pages.HomePage;
-import com.dgmarkt.utilities.Driver;
-
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
-
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.List;
 
 public class CategorySteps {
     HomePage homePage = new HomePage();

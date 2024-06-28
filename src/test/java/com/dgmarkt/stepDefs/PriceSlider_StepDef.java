@@ -8,16 +8,9 @@ import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import static java.lang.Integer.parseInt;
 
 public class PriceSlider_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -31,11 +24,6 @@ public class PriceSlider_StepDef {
         Assert.assertTrue(cartPage.PriceSlider2.isDisplayed());
 
     }
-
-
-
-
-
 
 
     @Then("Verifies default values {string}  and {string}")

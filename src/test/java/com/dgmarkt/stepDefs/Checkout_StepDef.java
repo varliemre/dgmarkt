@@ -16,8 +16,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.awt.*;
 import java.time.Duration;
 
 public class Checkout_StepDef {
@@ -246,13 +244,10 @@ public class Checkout_StepDef {
         System.out.println("expectedmsg = " + expectedmsg);
         System.out.println("acturlerrorMsg = " + acturlerrorMsg);
         BrowserUtils.waitFor(5);
-
         Assert.assertEquals(expectedmsg, acturlerrorMsg);
 
 
-
     }
-
 
     @Then("Verify that the user cannot continue shopping with incorrect delivery address information and verify the {string}")
     public void verifyThatTheUserCannotContinueShoppingWithIncorrectDeliveryAddressInformationAndVerifyThe(String expected_warnungMsg) {
