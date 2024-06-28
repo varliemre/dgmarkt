@@ -2,7 +2,7 @@
 Feature: As a user, I should be able to login with VALID credentials
   Background:
     Given The user is on the Home page
-    And The user navigates to the Login page
+    #And The user navigates to the Login page
 
   Scenario Outline: Successful login with valid credentials
     Given The user enters a valid "<email>" and "<password>"
