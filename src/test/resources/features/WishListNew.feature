@@ -6,7 +6,7 @@ Feature: My Account-User can Modify wish list
     Given The user logged in with valid credentials "muller@gmail.com" and "012345678" and is on the home page
 
 
-  Scenario Outline: Verify that the user should be able to reach wish list on My wish list page
+  Scenario Outline: Verify that the user should be able to reach wish list on My wish list page and the user should be able to reach wish list from pop-up message after adding the product to the wish list.
     And The user hover overs to "Category" menu headers and clicks "<moduleName>" sub menu headers
     And User adds "<productName>" item in his her wish list
     Then User validates the success message adding to wish list "<productNamesInSuccessMessages>"
@@ -41,7 +41,7 @@ Feature: My Account-User can Modify wish list
       | productName        | productNamesInSuccessMessages | moduleName      |
       | CAPSULE PLATE 6PCS | Capsule Plate 6pcs            | Health & Beauty |
 
-
+##Bunda calisacgim
   Scenario Outline: Verify that the user should NOT be able to add the products from wish list to cart
     And The user hover overs to "Category" menu headers and clicks "<moduleName>" sub menu headers
     And User adds "<productName>" item in his her wish list
