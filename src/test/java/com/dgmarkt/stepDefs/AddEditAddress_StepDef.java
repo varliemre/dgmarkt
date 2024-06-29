@@ -4,7 +4,7 @@ import com.dgmarkt.pages.AddressPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class Add_Edit_Address {
+public class AddEditAddress_StepDef {
 
     AddressPage addressPage = new AddressPage();
 
@@ -24,6 +24,7 @@ public class Add_Edit_Address {
     public void the_user_enter_valid_and_and_and_and_and_and(String string, String string2, String string3, String string4, String string5, String string6, String string7) {
 
     }
+
     @Then("The user click on the country dropbox and select country")
     public void the_user_click_on_the_country_dropbox_and_select_country() {
 

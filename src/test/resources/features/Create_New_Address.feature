@@ -13,4 +13,4 @@ Feature: User Create New Address
       Then The user should see the message that Your address has been successfully added
       Examples:
         | firstName | lastName | company       | address1      | address2 | city | postCode |
-        | Fatma     | Soytas   | Sahan Holding | Mörikerstr. 2 | k2       | Ulm  | 71011    |
+        | Fatma    | Soytas   | Sahan Holding | Mörikerstr. 2 | k2       | Ulm  | 71011    |
