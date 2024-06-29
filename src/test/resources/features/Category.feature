@@ -4,6 +4,7 @@ Feature: Category Module
   Background:
     Given The user is on the Home page
 
+
   Scenario: User can go to the Category button to see the Sub-Category page without clicking
     Given The user moves to Category button
     When The user can see the sub categories

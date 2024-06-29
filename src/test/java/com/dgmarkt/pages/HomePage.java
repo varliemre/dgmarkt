@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HomePage extends BasePage{
 
 
@@ -18,9 +20,13 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//span[text()='Category']")
     public WebElement categoryNav;
 
-    @FindBy(css = ".cbk_newsletter")
+     @FindBy(css = ".cbk_newsletter")
     public WebElement dontShowAgain;
-    public Actions closePopupButton;
+    @FindBy(css = ".cbk_newsletter")
+    public List<WebElement> dontShowAgain_l;
+
+    @FindBy()
+    public WebElement closePopupBtn;
   
     @FindBy(xpath = "//h2[text()='Returning Customer']")
     public WebElement loginMessageNewLoginStepl;
@@ -65,5 +71,15 @@ public class HomePage extends BasePage{
         //clicking to the category
         Driver.get().findElement(By.xpath("//a[text()='" + categoryName + "']")).click();
     }
+
+
+    public void closePopupButton(){
+        BrowserUtils.waitFor(1);
+        if (dontShowAgain_l.size()>0){
+            dontShowAgain.click();
+        }
+        closePopupBtn.click();
+
+    };
 
 }
