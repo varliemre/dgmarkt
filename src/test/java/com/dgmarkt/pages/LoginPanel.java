@@ -1,5 +1,6 @@
 package com.dgmarkt.pages;
 
+import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.ConfigurationReader;
 import com.dgmarkt.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,8 @@ public class LoginPanel extends BasePage {
     @FindBy(xpath = "//input[@name='login']")
     public WebElement loginPanelBtn;
 
+
+
     public void loginPanel() {
         Driver.get().get(ConfigurationReader.get("url"));
         String email = ConfigurationReader.get("loginpanelemail");
@@ -24,6 +27,9 @@ public class LoginPanel extends BasePage {
         loginPanelEmail.sendKeys(email);
         loginPanelPassword.sendKeys(password);
         loginPanelBtn.click();
+        BrowserUtils.waitFor(2);
+        dontShowAgain.click();
         newsletterCloseBtn.click();
+
     }
 }

@@ -6,16 +6,16 @@ import org.openqa.selenium.support.FindBy;
 public class AddressPage extends BasePage{
 
 
-    @FindBy(xpath = "//*[@id=\"top-links\"]")
+    @FindBy(xpath = "//*[@id='top-links']")
     public WebElement myAccountDropbox;
 
-    @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li/ul/li[1]")
+    @FindBy(xpath = "//*[@id='top-links']/ul/li/ul/li[1]")
     public WebElement myAccountDropboxButton;
 
-    @FindBy(xpath = "//*[@id=\"column-right\"]/div/div/a[4]")
+    @FindBy(xpath = "//*[@id='column-right']/div/div/a[4]")
     public WebElement AddressBookButton;
 
-    @FindBy(xpath = "//*[@id=\"content\"]/div[2]/div[2]")
+    @FindBy(xpath = "//*[@id='content']/div[2]/div[2]")
     public WebElement newAddressButton;
 
     @FindBy(id = "input-firstname")
@@ -48,13 +48,13 @@ public class AddressPage extends BasePage{
     @FindBy(id = "input-zone")
     public WebElement inputDropboxZone;
 
-    @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset/div[10]/div/label[1]/input")
+    @FindBy(xpath = "//*[@id='content']/form/fieldset/div[10]/div/label[1]/input")
     public WebElement defaultAddressRadioButton;
 
-    @FindBy(xpath = "//*[@id=\"content\"]/form/div/div[2]")
+    @FindBy(xpath = "//*[@id='content']/form/div/div[2]")
     public WebElement continueButton;
 
-    @FindBy(xpath = "//*[@id=\"account-address\"]/div[1]/text()")
+    @FindBy(xpath = "//*[@id='account-address']/div[1]/text()")
     public WebElement createdNewAddressMessage;
 
 

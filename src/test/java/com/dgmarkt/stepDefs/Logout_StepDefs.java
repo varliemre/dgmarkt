@@ -2,30 +2,37 @@ package com.dgmarkt.stepDefs;
 
 import com.dgmarkt.pages.*;
 import com.dgmarkt.utilities.BrowserUtils;
-import com.dgmarkt.utilities.ConfigurationReader;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 public class Logout_StepDefs extends BasePage {
+  
     LoginPage loginPage = new LoginPage();
     LogoutPage logoutPage = new LogoutPage();
     CartPage cartPage = new CartPage();
+  
     @When("The user clicks My Account dropdown button and clicks Logout button")
     public void the_user_clicks_my_account_dropdown_button_and_clicks_Logout_button() {
         loginPage.navigateMyAccount("Logout");
     }
+  
     @When("The user clicks continue button for Logout")
     public void the_user_clicks_continue_button_for_logout() {
+
+        //logoutContinueBtn.click();
+       // newsletterCloseBtn.click();
+
         logoutPage.logoutContinueBtn.click();
         newsletterCloseBtn.click();
+
     }
     @When("The user clicks back button")
     public void the_user_clicks_back_button() {
         Driver.get().navigate().back();
         BrowserUtils.waitFor(3);
-        newsletterCloseBtn.click();
+        //newsletterCloseBtn.click();
     }
     @And("The user clicks back button once more")
     public void the_user_clicks_back_button_once_more() {

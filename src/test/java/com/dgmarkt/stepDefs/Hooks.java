@@ -1,6 +1,5 @@
 package com.dgmarkt.stepDefs;
 
-import com.dgmarkt.pages.LoginPanel;
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.After;
@@ -28,8 +27,11 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot)Driver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png","screenshot");
         }
-        BrowserUtils.waitFor(2);
+
+       
+       BrowserUtils.waitFor(10);
        Driver.closeDriver();
+
     }
 
     @Before("@db")
