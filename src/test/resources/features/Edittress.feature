@@ -1,6 +1,6 @@
 Feature: User Edit Address
-  @Editress
-  Scenario Outline: Successful create a new address with valid credentials
+  @B13DGMRAU-69
+  Scenario Outline: Successful create a Edit with valid credentials
     Given The user is on the Home page
     And The user clicks on the MyAccount dropbox and clicks on the login button.
     When The user enters a valid "<email>" and "<password>"
@@ -16,4 +16,4 @@ Feature: User Edit Address
 
     Examples:
       | First Name | Last Name | Company | Address 1 | City | Post Code | Message                                         | email                     | password   |
-      |            | Sahan     | BMW     | Eichen 10 | Ulm  | 75321     | First Name must be between 1 and 32 characters! | fatmasoytas81@hotmail.com | Fatma2024. |
+      |            | Sahan     | BMW     | Eichen 10 | Ulm  | 75321     | First Name must be between 1 and 32 characters! | fatmasoytas81@hotmail.com |Fatma2024.|
