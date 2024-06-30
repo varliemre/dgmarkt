@@ -18,7 +18,9 @@ public class Cart_StepDef {
 
     @Given("The user logged in with valid credentials {string} and {string} and is on the home page")
     public void the_user_is_on_the_home_page(String email, String password) {
+
         loginPanel.loginPanel();
+        BrowserUtils.waitFor(2);
         loginPage.navigateMyAccount("Login");
         BrowserUtils.waitForClickablility(loginPage.loginEmail, 2);
         BrowserUtils.waitForClickablility(loginPage.loginPassword, 2);

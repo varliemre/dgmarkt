@@ -84,11 +84,5 @@ public class WishListNew_StepDefs {
         wishListPage.validateThatTheItemIsNoMoreInWishList(expectedElement);
     }
 
-    @Then("The user verifies that out of stock products can not be added to cart")
-    public void theUserVerifiesThatOutOfStockProductsCanNotBeAddedToCart() {
-wishListPage.canNotAddToCart();
-        //Assert.assertEquals();
 
-
-    }
 }
