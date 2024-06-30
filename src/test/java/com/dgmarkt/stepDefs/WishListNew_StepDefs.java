@@ -6,7 +6,7 @@ import com.dgmarkt.pages.HomePage;
 import com.dgmarkt.pages.WishListPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
+
 
 public class WishListNew_StepDefs {
 
@@ -86,7 +86,7 @@ public class WishListNew_StepDefs {
 
     @Then("The user verifies that out of stock products can not be added to cart")
     public void theUserVerifiesThatOutOfStockProductsCanNotBeAddedToCart() {
-wishListPage.canNotAddToCart();
+    wishListPage.canNotAddToCart();
         //Assert.assertEquals();
 
 
