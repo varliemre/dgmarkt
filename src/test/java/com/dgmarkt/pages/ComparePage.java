@@ -15,47 +15,17 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertTrue;
 
 public class ComparePage extends BasePage{
-    @FindBy(tagName = "h1")
-    public WebElement ProductComparisonText;
 
     @FindBy(id = "compare-total")
     public WebElement productCompareButton;
 
-    @FindBy(xpath = "(//input[@type='button'])[1]")
-    public WebElement firstProductsAddtoCartButton;
 
-    @FindBy(xpath = "(//input[@type='button'])[2]")
-    public WebElement secondProductsAddtoCartButton;
 
     @FindBy(xpath = "//*[text()='Remove']")
     public WebElement firstProductsRemoveButton;
 
     @FindBy(xpath = "//div[@id='content']/p")
     public WebElement noElementText;
-
-    public void hoverOverAndCompareProduct(String productName) {
-
-        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-
-
-        WebElement product = Driver.get().findElement(By.xpath("//img[contains(@title,'" + productName + "')][contains(@class,'responsive')]"));
-        jse.executeScript("arguments[0].scrollIntoView(true);", product);
-
-        WebElement compareButton = Driver.get().findElement(By.xpath("//img[contains(@title,'" + productName + "')]/../../../..//span[text()='Compare this Product']/.."));
-        jse.executeScript("arguments[0].click();", compareButton);
-
-
-    }
-
-    @FindBy(xpath = "//table/tbody/tr/td[text()='Capsule Plate 6pcs']")
-    public WebElement product1;
-
-    @FindBy(xpath = "//table/thead/tr/td[@colspan='2']")
-    public WebElement columnNumber;
-    @FindBy(xpath = "//table/thead/tr/td[@colspan='5']")
-    public WebElement columnNumber5;
-
-
 
 
     @FindBy(xpath = "//div[@class='caption']")
@@ -105,7 +75,6 @@ public class ComparePage extends BasePage{
         WebElement popupForRemove = Driver.get().findElement(By.xpath("//button[@class='close']"));
 
     }
-
 
     public void verifyThereisNoProductAfterRemove(){
         String expectedText ="You have not chosen any products to compare.";
