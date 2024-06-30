@@ -66,4 +66,11 @@ public class HomePage extends BasePage{
         Driver.get().findElement(By.xpath("//a[text()='" + categoryName + "']")).click();
     }
 
+    public void navigateMyAccount() throws InterruptedException {
+        Actions actions = new Actions(Driver.get());
+        WebElement dropDown = Driver.get().findElement(By.xpath("//li[@class='nav header-dropdown']"));
+        BrowserUtils.hover(dropDown);
+        BrowserUtils.clickWithJS(Driver.get().findElement(By.xpath("//a[text()='My Account']")));
+
+    }
 }
