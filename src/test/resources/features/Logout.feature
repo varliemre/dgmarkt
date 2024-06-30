@@ -22,7 +22,7 @@ Feature: User Logout Test
     Examples:
       | email                  | password   |
       | sdetkosovali@gmail.com | Bosnali123 |
-
+@eeer
   Scenario Outline: Twice Back Button After Successfully Logout
     Given The user is on the login page
     When The user enters a valid "<email>" and "<password>"

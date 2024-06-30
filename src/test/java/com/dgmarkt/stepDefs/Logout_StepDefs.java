@@ -25,7 +25,7 @@ public class Logout_StepDefs extends BasePage {
        // newsletterCloseBtn.click();
 
         logoutPage.logoutContinueBtn.click();
-        newsletterCloseBtn.click();
+      //  newsletterCloseBtn.click();
 
     }
     @When("The user clicks back button")
@@ -46,7 +46,7 @@ public class Logout_StepDefs extends BasePage {
     @And("The user clicks continue button on existing page for Logout")
     public void theUserClicksContinueButtonOnExistingPageForLogout() {
         logoutPage.logoutContinueBtn2.click();
-        newsletterCloseBtn.click();
+      //  newsletterCloseBtn.click();
     }
     @Then("The user verifies that user is logged out")
     public void the_user_verifies_that_user_is_logged_out() {
