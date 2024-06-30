@@ -1,7 +1,6 @@
 package com.dgmarkt.stepDefs;
 
 
-import com.dgmarkt.pages.BasePage;
 import com.dgmarkt.pages.CategoryPage;
 import com.dgmarkt.utilities.Driver;
 import com.dgmarkt.pages.HomePage;
