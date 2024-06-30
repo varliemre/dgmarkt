@@ -22,7 +22,7 @@ public class Currency_StepDefs {
     }
     @Then("The user verifies that the prices of products are displayed in the {string} currency")
     public void the_user_verifies_that_the_prices_of_products_are_displayed_in_the_currency(String currencySymbol) {
-    loginPage.newsletterCloseBtn.click();
+    //loginPage.newsletterCloseBtn.click();
     cartPage.select_Category("Health & Beauty");
     BrowserUtils.scrollToElement(currencyPage.firstProductPrice);
     BrowserUtils.waitFor(2);
@@ -34,6 +34,7 @@ public class Currency_StepDefs {
         cartPage.select_Category("TV Accessories");
         BrowserUtils.scrollToElement(currencyPage.firstProductPrice);
         cartPage.select_product("Belkin adapter cable");
+        BrowserUtils.waitFor(2);
         Driver.get().findElement(By.id("button-cart")).click();
     }
     @When("The user navigates to checkout page")
@@ -45,21 +46,20 @@ public class Currency_StepDefs {
     public void the_user_fills_the_checkout_form() {
         checkoutPage.I_want_to_use_a_new_billing_address_l.click();
         checkoutPage.billing_adress_list_fill("ASD","asd","zxc","sss","qqq");
-       // checkoutPage.billing_continue_btn_l.click();
-//        checkoutPage.I_want_to_use_a_new_delivery_address_l.click();
-//        checkoutPage.delivery_adress_list_fill("zz","ert","zxxc","kkk","ooo");
-       // checkoutPage.delivery_continue_btn_l.click();
         currencyPage.I_want_to_use_an_existing_billing_address.click();
         checkoutPage.delivery_continue_btn_l.click();
-        checkoutPage.flat_radioBtn_l.click();
-        //checkoutPage.delivery_method_continue_l.click();
-        currencyPage.deliveryMethodContinueButton.click();
+        BrowserUtils.waitFor(1);
+      //  currencyPage.flatShippingRateButton.click();
+        currencyPage.deliveryMethodContinueButton2.click();
+        currencyPage.cashOnDeliveryButton.click();
         checkoutPage.term_condition_btn_l.click();
-        checkoutPage.payment_continue_l.click();
+        BrowserUtils.waitFor(2);
+        currencyPage.deliveryMethodContinueButton3.click();
+       // checkoutPage.payment_continue_l.click();
 
     }
-    @Then("Verify that the order summary displays prices in the selected currency")
-    public void verify_that_the_order_summary_displays_prices_in_the_selected_currency() {
-
+    @Then("Verify that the order summary displays prices in the selected currency {string}")
+    public void verifyThatTheOrderSummaryDisplaysPricesInTheSelectedCurrency(String currencySymbol) {
+        Assert.assertTrue(currencyPage.confirmationTable.getText().contains(currencySymbol));
     }
 }
