@@ -1,8 +1,8 @@
 package com.dgmarkt.stepDefs;
 
-import com.dgmarkt.pages.BasePage;
 import com.dgmarkt.pages.EditAccountPage;
 import com.dgmarkt.pages.HomePage;
+import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static com.dgmarkt.utilities.Driver.driver;
 
 public class EditAccount_StepDefs {
     EditAccountPage editAccountPage = new EditAccountPage();
@@ -86,13 +85,13 @@ public class EditAccount_StepDefs {
     @When("The user enters valid credentials for the Edit Account login")
     public void theUserEntersValidCredentialsForTheEditAccountLogin() {
 
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
+        WebElement username = Driver.get().findElement(By.id("username"));
+        WebElement password = Driver.get().findElement(By.id("password"));
 
         username.sendKeys("dilekttest@gmail.com");
         password.sendKeys("123456");
 
-        WebElement loginButton = driver.findElement(By.id("login_button"));
+        WebElement loginButton = Driver.get().findElement(By.id("login_button"));
         loginButton.click();
 
        // WebElement driver = null;
