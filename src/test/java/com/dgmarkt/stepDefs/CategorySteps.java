@@ -1,6 +1,7 @@
 package com.dgmarkt.stepDefs;
 
 
+import com.dgmarkt.pages.BasePage;
 import com.dgmarkt.pages.CategoryPage;
 import com.dgmarkt.utilities.Driver;
 import com.dgmarkt.pages.HomePage;
@@ -15,8 +16,7 @@ public class CategorySteps {
 
     @When("The user moves to Category button")
     public void theUserMovesToCategoryButton() throws InterruptedException {
-        homePage.dontShowAgain.click();
-        homePage.closePopupButton.click();
+
         Actions actions = new Actions(Driver.get());
         actions.moveToElement(subCategoryPage.categoryButton).perform();
         Thread.sleep(3000);
@@ -32,13 +32,6 @@ public class CategorySteps {
     }
 
 
-//    @Given("The user is on the home page")
-//    public void the_user_is_on_the_home_page() {
-//        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-//        driver = new ChromeDriver();
-//        driver.get("https://dgmarkt.com/");
-//        categoryPage = new CategoryPage(driver);
-//    }
 
     @When("The user clicks on the 'Health & Beauty' sub-button")
     public void theUserClicksOnTheHealthBeautySubButton() {

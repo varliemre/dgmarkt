@@ -9,19 +9,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HomePage extends BasePage{
 
 
     @FindBy(xpath = "//a[text()='Wish List']")
     public WebElement wishListBtn;
-  
+
     @FindBy(xpath = "//span[text()='Category']")
     public WebElement categoryNav;
 
-    @FindBy(css = ".cbk_newsletter")
-    public WebElement dontShowAgain;
-    public Actions closePopupButton;
-  
+   //  @FindBy(css = ".cbk_newsletter")
+   // public WebElement dontShowAgain;
+    //@FindBy(css = ".cbk_newsletter")
+    public List<WebElement> dontShowAgain_l;
+
+  //  @FindBy(xpath = "//a[@class='a-close-newsletter']")
+    //  public WebElement closePopupBtn;
+
     @FindBy(xpath = "//h2[text()='Returning Customer']")
     public WebElement loginMessageNewLoginStepl;
 
@@ -36,8 +42,8 @@ public class HomePage extends BasePage{
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", wishlistIcon);
 
     }
-  
-    
+
+
 
     public void loginMessageNewLoginStep(){
         String actualMessage="Returning Customer";
@@ -66,6 +72,17 @@ public class HomePage extends BasePage{
         Driver.get().findElement(By.xpath("//a[text()='" + categoryName + "']")).click();
     }
 
+
+
+    public void closePopupButton(){
+        BrowserUtils.waitFor(1);
+        if (dontShowAgain_l.size()>0){
+            dontShowAgain.click();
+        }
+        newsletterCloseBtn.click();
+
+    };
+
     public void navigateMyAccount() throws InterruptedException {
         Actions actions = new Actions(Driver.get());
         WebElement dropDown = Driver.get().findElement(By.xpath("//li[@class='nav header-dropdown']"));
@@ -73,4 +90,5 @@ public class HomePage extends BasePage{
         BrowserUtils.clickWithJS(Driver.get().findElement(By.xpath("//a[text()='My Account']")));
 
     }
+
 }

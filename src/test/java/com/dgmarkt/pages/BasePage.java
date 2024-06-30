@@ -13,15 +13,17 @@ public abstract class BasePage {
     }
 
     @FindBy(xpath = "//a[@class='a-close-newsletter']")
-    public WebElement newsletterCloseBtn;
+    public static WebElement newsletterCloseBtn;
 
     @FindBy(xpath = "//span[text()='My Account']")
     public WebElement myAccountDropDown;
 
 
      @FindBy(css = ".cbk_newsletter" )
-     public WebElement dontShowAgain;
+     public static WebElement dontShowAgain;
 
+    public static void navigateMyAccount() {
+    }
 
 
     public void navigateMyAccount(String menuName){
