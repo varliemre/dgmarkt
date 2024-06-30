@@ -11,10 +11,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class Add_Edit_Address_StepDef {
+public class AddEditAddress_StepDefs {
 
     AddressPage addressPage = new AddressPage();
-   EditAddressPage editAddressPage = new EditAddressPage();
+    EditAddressPage editAddressPage = new EditAddressPage();
 
     @Given("The user clicks on the MyAccount dropbox and clicks on the login button.")
     public void the_user_clicks_on_the_my_account_dropbox_and_clicks_on_the_login_button() {
@@ -120,7 +120,7 @@ public class Add_Edit_Address_StepDef {
     }
 
 
- @And("The user clicks Edit button and navigates to Edit Address page")
+    @And("The user clicks Edit button and navigates to Edit Address page")
     public void theUserClicksEditButtonAndNavigatesToEditAddressPage() {
         addressPage.editButton.click();
         Assert.assertTrue(editAddressPage.editAddressHeader.isDisplayed());
@@ -130,7 +130,7 @@ public class Add_Edit_Address_StepDef {
     public void theUserFillsTheAddressFormWithDataAndAndAndAndAnd(String firstName, String lastName, String company, String address1, String city, String postcode) {
         editAddressPage.clearData();
         AddressPage.enterData(firstName, lastName,company, address1, city,postcode);
-}
+    }
 
 
 }

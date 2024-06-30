@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
 
-public class CategorySteps {
+public class Category_StepDefs {
     HomePage homePage = new HomePage();
     CategoryPage subCategoryPage = new CategoryPage();
 
@@ -75,6 +75,7 @@ public class CategorySteps {
     }
 
 }
+
 
 
 

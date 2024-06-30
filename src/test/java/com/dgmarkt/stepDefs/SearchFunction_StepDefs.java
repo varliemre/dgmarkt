@@ -7,7 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
-public class SearchFunctionStepDefs {
+public class SearchFunction_StepDefs {
     LoginPanel loginPanel = new LoginPanel();
     SearchBtnPage searchbtn= new SearchBtnPage();
 
@@ -52,7 +52,7 @@ public class SearchFunctionStepDefs {
         Thread.sleep(500);
         searchbtn.searchButton2.click();
 
-        }
+    }
 
 
     @And("Verify that {string} message is displayed")

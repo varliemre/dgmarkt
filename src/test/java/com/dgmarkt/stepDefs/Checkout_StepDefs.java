@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Checkout_StepDef {
+public class Checkout_StepDefs {
     LoginPage loginPage = new LoginPage();
     LoginPanel loginPanel = new LoginPanel();
     CartPage cartPage = new CartPage();
