@@ -16,18 +16,18 @@ public class HomePage extends BasePage{
 
     @FindBy(xpath = "//a[text()='Wish List']")
     public WebElement wishListBtn;
-  
+
     @FindBy(xpath = "//span[text()='Category']")
     public WebElement categoryNav;
 
-     @FindBy(css = ".cbk_newsletter")
-    public WebElement dontShowAgain;
-    @FindBy(css = ".cbk_newsletter")
+   //  @FindBy(css = ".cbk_newsletter")
+   // public WebElement dontShowAgain;
+    //@FindBy(css = ".cbk_newsletter")
     public List<WebElement> dontShowAgain_l;
 
-    @FindBy()
-    public WebElement closePopupBtn;
-  
+  //  @FindBy(xpath = "//a[@class='a-close-newsletter']")
+    //  public WebElement closePopupBtn;
+
     @FindBy(xpath = "//h2[text()='Returning Customer']")
     public WebElement loginMessageNewLoginStepl;
 
@@ -42,8 +42,8 @@ public class HomePage extends BasePage{
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", wishlistIcon);
 
     }
-  
-    
+
+
 
     public void loginMessageNewLoginStep(){
         String actualMessage="Returning Customer";
@@ -78,7 +78,7 @@ public class HomePage extends BasePage{
         if (dontShowAgain_l.size()>0){
             dontShowAgain.click();
         }
-        closePopupBtn.click();
+        newsletterCloseBtn.click();
 
     };
 
