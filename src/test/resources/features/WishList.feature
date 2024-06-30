@@ -15,7 +15,7 @@ Feature: My Account-User can Modify wish list
     When The user clicks wish list icon
     Then The user verifies that the user should see wish list text
 
-  @wish
+
   Scenario: Verify that the user should not be able to access to wish list when logged out.
     When The user clicks wish list link
     And The user clicks My Account dropdown button and clicks Logout button

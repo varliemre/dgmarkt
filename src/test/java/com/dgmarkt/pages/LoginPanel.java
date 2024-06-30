@@ -25,6 +25,7 @@ public class LoginPanel extends BasePage {
         String password = ConfigurationReader.get("loginpanelpasswword");
 
         loginPanelEmail.sendKeys(email);
+        BrowserUtils.waitFor(2);
         loginPanelPassword.sendKeys(password);
         loginPanelBtn.click();
         BrowserUtils.waitFor(2);
