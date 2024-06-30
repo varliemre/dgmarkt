@@ -37,9 +37,9 @@ public class Cart_StepDef {
     }
 
     @When("The user selects a {string} from the categories")
-    public void the_user_selects_a_from_the_categories(String product) {
+    public void the_user_selects_a_from_the_categories(String productName) {
 
-        cartPage.select_product(product);
+        cartPage.select_product(productName);
 
 
     }

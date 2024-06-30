@@ -1,5 +1,6 @@
 package com.dgmarkt.pages;
 
+
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -9,42 +10,45 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
 public class CategoryPage extends BasePage{
 
-    WebDriver driver;
+    @FindBy(xpath = "//span[text()='Category']")
+    public WebElement categoryButton;
 
-//    public CategoryPage(WebDriver driver) {
-//        this.driver = driver;
-//        PageFactory.initElements(driver, this);
-//    }
+    @FindBy(xpath = "(//a[text()='Health & Beauty'])[1]")
+    public WebElement healthAndBeautyButton;
 
-    @FindBy(xpath = "//*[@id=\"pt-menu-4885\"]/ul/li[2]/a/span")
-    WebElement categoryTab;
 
-    @FindBy(xpath = "//*[@id=\"pt-menu-4885\"]/ul/li[2]/div")
-    WebElement subCategoryTab;
+    @FindBy(xpath = "(//a[text()='Televisions'])[1]")
+    public WebElement televisionsButton;
 
-    public void hoverOnCategoryTab() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(categoryTab).perform();
-    }
 
-    public void hoverOnSubCategoryTab() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(subCategoryTab).perform();
-    }
-    public void clickOnSubCategoryTab() {
-        subCategoryTab.click();
-    }
+    @FindBy(xpath = "(//a[text()='TV Accessories'])[1]")
+    public WebElement tvAccessoriesButton;
 
-    //---------------
+    @FindBy(xpath = "(//a[text()='Networking'])[1]")
+    public WebElement networkingButton;
+
+    @FindBy(xpath = "//h1[text()='Health & Beauty']")
+    public WebElement healthAndBeautyPage;
+
+    @FindBy(xpath = "//h1[text()='Televisions']")
+    public WebElement televisionsPage;
+
+    @FindBy(xpath = "//h1[text()='TV Accessories']")
+    public WebElement tvAccessoriesPage;
+  
+    @FindBy(xpath = "//div[@class='caption']")
+    public List<WebElement> productCaptions;
+    
+    @FindBy(xpath = "//h1[text()='Networking']")
+    public WebElement networkingPage;
+
+
+
 
     public void navigateToPageOrClickAButton(String text) {
         BrowserUtils.waitFor(2);
@@ -52,9 +56,6 @@ public class CategoryPage extends BasePage{
 
     }
 
-
-    @FindBy(xpath = "//div[@class='caption']")
-    public List<WebElement> productCaptions;
 
     public void addProductToWishList(String productNames) {
         int timer = 0;
@@ -72,8 +73,10 @@ public class CategoryPage extends BasePage{
         BrowserUtils.waitFor(2);
     }
 
-
+    
 
 
 }
+
+
 
