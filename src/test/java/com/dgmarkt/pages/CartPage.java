@@ -2,20 +2,17 @@ package com.dgmarkt.pages;
 
 import com.dgmarkt.utilities.BrowserUtils;
 import com.dgmarkt.utilities.Driver;
-import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 
 import java.time.Duration;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.function.Function;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class CartPage extends BasePage {
@@ -33,15 +30,18 @@ public class CartPage extends BasePage {
     @FindBy(css = "[id='content']")
     public WebElement cart_emptyMsg;
 
+    @FindBy(id = "cart")
+    public WebElement cartButton;
+
 
     public void select_Category(String subCatagoryName) {
 
         WebElement catagoryHover = Driver.get().findElement(By.xpath("//*[.='Category']"));
         BrowserUtils.waitForClickablility(catagoryHover, 5);
         Actions actions = new Actions(Driver.get());
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         actions.moveToElement(catagoryHover).perform();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(10);
 
 
         WebElement submenuWebElement = Driver.get().findElement(By.xpath("//a[contains(@class, 'a-mega-second-link') and text()='" + subCatagoryName + "']"));
@@ -115,6 +115,15 @@ public class CartPage extends BasePage {
         return elements.isEmpty();
     }
 
+    public void valitadateThatTheProductInCart(String expectedProduct) {
+        BrowserUtils.waitFor(2);
+        assertTrue(Driver.get().findElement(By.xpath("//td//a[text()='" + expectedProduct + "']")).isDisplayed());
+    }
+
+    public void userClicksToCartButton() {
+        cartButton.click();
+        BrowserUtils.waitFor(2);
+    }
 
 
     ////////////////////////////////////////////////////////für Price Silider
@@ -125,14 +134,6 @@ public class CartPage extends BasePage {
 
     @FindBy(xpath = "//input[@placeholder='Min']")
     public WebElement MinText;
-  
-  @FindBy(id = "cart")
-    public WebElement cartButton;
-
-    public void userClicksToCartButton() {
-        cartButton.click();
-        BrowserUtils.waitFor(2);
-    }
 
     @FindBy(xpath = "//input[@placeholder='Max']")
     public WebElement MaxText;
@@ -145,19 +146,5 @@ public class CartPage extends BasePage {
 
     @FindBy(css = "[class='product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-4 col-xs-6 product-items']")
     public WebElement ProductList;
-
-
-        public boolean isCartEmpty() {
-            List<WebElement> elements = Driver.get().findElements(By.xpath("//*[@class='input-group btn-block']"));
-            return elements.isEmpty();
-        }
-        //-------------
-
-    public void valitadateThatTheProductInCart(String expectedProduct) {
-        BrowserUtils.waitFor(2);
-        Assert.assertTrue(Driver.get().findElement(By.xpath("//td//a[text()='" + expectedProduct + "']")).isDisplayed());
-    }
-    
-
 
 }

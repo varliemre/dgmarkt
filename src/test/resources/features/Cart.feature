@@ -1,5 +1,5 @@
 @B13DGMRAU-6
-Feature:As a user, I should be able to manage the cart by clicking the cart icon.
+Feature: As a user, I should be able to manage the cart by clicking the cart icon.
   Acceptance Criteria :
   1- Verify that the user can select products from the relevant category and add them to the cart.
   2- Verify that the user can delete items from the cart.

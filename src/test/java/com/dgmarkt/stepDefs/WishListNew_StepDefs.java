@@ -6,7 +6,7 @@ import com.dgmarkt.pages.HomePage;
 import com.dgmarkt.pages.WishListPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
+
 
 public class WishListNew_StepDefs {
 
@@ -83,6 +83,7 @@ public class WishListNew_StepDefs {
     public void userValidatesThatTheItemIsNotOnTheWishListAnymore(String expectedElement) {
         wishListPage.validateThatTheItemIsNoMoreInWishList(expectedElement);
     }
+
 
 
 }

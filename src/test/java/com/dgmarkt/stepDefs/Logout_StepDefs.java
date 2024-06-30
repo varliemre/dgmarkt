@@ -2,7 +2,6 @@ package com.dgmarkt.stepDefs;
 
 import com.dgmarkt.pages.*;
 import com.dgmarkt.utilities.BrowserUtils;
-import com.dgmarkt.utilities.ConfigurationReader;
 import com.dgmarkt.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -22,11 +21,11 @@ public class Logout_StepDefs extends BasePage {
     @When("The user clicks continue button for Logout")
     public void the_user_clicks_continue_button_for_logout() {
 
-        logoutContinueBtn.click();
+        //logoutContinueBtn.click();
        // newsletterCloseBtn.click();
 
         logoutPage.logoutContinueBtn.click();
-        newsletterCloseBtn.click();
+      //  newsletterCloseBtn.click();
 
     }
     @When("The user clicks back button")
@@ -47,7 +46,7 @@ public class Logout_StepDefs extends BasePage {
     @And("The user clicks continue button on existing page for Logout")
     public void theUserClicksContinueButtonOnExistingPageForLogout() {
         logoutPage.logoutContinueBtn2.click();
-        newsletterCloseBtn.click();
+      //  newsletterCloseBtn.click();
     }
     @Then("The user verifies that user is logged out")
     public void the_user_verifies_that_user_is_logged_out() {

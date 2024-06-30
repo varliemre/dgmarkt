@@ -33,27 +33,22 @@ public class PriceSlider_StepDef {
     }
 
 
-
-
-
-
-
     @Then("Verifies default values {string}  and {string}")
     public void verifiesDefaultValuesAnd(String defaultMinVaulues, String defaultMaxValues) {
 
         BrowserUtils.waitFor(10);
-        String actualDefaultMAxVaules=cartPage.MaxText.getAttribute("value");
+        String actualDefaultMAxVaules = cartPage.MaxText.getAttribute("value");
         System.out.println("defaultMaxValues = " + defaultMaxValues);
         BrowserUtils.waitFor(10);
-        String actualDefaultMinValues=cartPage.MinText.getAttribute("value");
+        String actualDefaultMinValues = cartPage.MinText.getAttribute("value");
         System.out.println("defaultMinVaulues = " + defaultMinVaulues);
         System.out.println("actualDefaultMAxVaules = " + actualDefaultMAxVaules);
 
         System.out.println("actualDefaultMinValues = " + actualDefaultMinValues);
         BrowserUtils.waitFor(10);
-        Assert.assertEquals(defaultMaxValues,actualDefaultMAxVaules);
+        Assert.assertEquals(defaultMaxValues, actualDefaultMAxVaules);
         BrowserUtils.waitFor(10);
-        Assert.assertEquals(defaultMinVaulues,actualDefaultMinValues);
+        Assert.assertEquals(defaultMinVaulues, actualDefaultMinValues);
 
     }
 
@@ -112,7 +107,8 @@ public class PriceSlider_StepDef {
         // Diğer doğrulamaları yapabilir veya gerekli işlemleri gerçekleştirebilirsiniz
         System.out.println("Güncellenmiş minValue: " + updatedMinValue);
         System.out.println("Güncellenmiş maxValue: " + updatedMaxValue);
-    }};
+    }
+};
 
 
 

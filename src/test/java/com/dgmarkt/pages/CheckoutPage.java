@@ -135,7 +135,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "[class='text-danger']")
     public WebElement adress_form_error_msg_l;
 
-    @FindBy(xpath= "//a[.='Continue Shopping']")
+    @FindBy(xpath = "//a[.='Continue Shopping']")
     public WebElement continue_shopping_btn;
 
     public void click_cart_Ikon() {
@@ -144,10 +144,6 @@ public class CheckoutPage extends BasePage {
         executor.executeScript("arguments[0].click();", cart_l);
         jse.executeScript("arguments[0].scrollIntoView(true);", viewCart_l);
         BrowserUtils.clickWithJS(viewCart_l);
-
-
-
-
 
 
     }
@@ -195,7 +191,7 @@ public class CheckoutPage extends BasePage {
         first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(2);
         last_name_l.sendKeys(lastName);
-       BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(2);
         adresse1_l.sendKeys(address1);
         BrowserUtils.waitFor(2);
         city_l.sendKeys(city);
@@ -206,13 +202,12 @@ public class CheckoutPage extends BasePage {
         BrowserUtils.waitFor(2);
         Select select = new Select(country_drop_down);
         select.selectByVisibleText("Australia");
-      BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(2);
         Select select1 = new Select(region_drop_down);
         select1.selectByIndex(2);
         BrowserUtils.waitFor(2);
-        BrowserUtils.waitForClickablility(billing_continue_btn_l,30);
+        BrowserUtils.waitForClickablility(billing_continue_btn_l, 30);
         BrowserUtils.clickWithJS(billing_continue_btn_l);
-
 
 
     }
@@ -223,12 +218,12 @@ public class CheckoutPage extends BasePage {
         delivery_first_name_l.sendKeys(firstName);
         BrowserUtils.waitFor(1);
         delivery_last_name_l.sendKeys(lastName);
-      BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(2);
         delivery_adresse1_l.sendKeys(address1);
-     BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(2);
         delivery_city_l.sendKeys(city);
         BrowserUtils.waitFor(2);
-       delivery_post_code_l.clear();
+        delivery_post_code_l.clear();
         BrowserUtils.waitFor(2);
         delivery_post_code_l.sendKeys(postCode);
         Select select = new Select(delivery_country_drop_down);
@@ -237,17 +232,17 @@ public class CheckoutPage extends BasePage {
         Select select1 = new Select(delivery_region_drop_down);
         select1.selectByIndex(2);
 
-        BrowserUtils.waitForClickablility(delivery_continue_btn_l,30);
+        BrowserUtils.waitForClickablility(delivery_continue_btn_l, 30);
         BrowserUtils.clickWithJS(delivery_continue_btn_l);
 
 
-
     }
-    public void webElementClick_Methode(WebElement element){
+
+    public void webElementClick_Methode(WebElement element) {
 
         try {
             BrowserUtils.clickWithJS(element);
-            BrowserUtils.waitForClickablility(element,20);
+            BrowserUtils.waitForClickablility(element, 20);
         } catch (Exception e) {
             e.printStackTrace();
 

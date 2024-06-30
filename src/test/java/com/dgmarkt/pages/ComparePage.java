@@ -8,13 +8,16 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
 
-public class ComparePage extends BasePage{
+public class ComparePage extends BasePage {
+  
+    @FindBy(tagName = "h1")
+    public WebElement ProductComparisonText;
+
 
     @FindBy(id = "compare-total")
     public WebElement productCompareButton;
