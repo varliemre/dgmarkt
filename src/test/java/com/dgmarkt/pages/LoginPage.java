@@ -21,9 +21,12 @@ public class LoginPage extends BasePage{
 
     @FindBy(xpath = "//*[text()=' Congratulation! Login Successfully']")
     public WebElement successMsg;
-
-    @FindBy(xpath="//*[text()=' Warning: No match for E-Mail Address and/or Password.']")
+    @FindBy(xpath = "//*[text()=' Warning: No match for E-Mail Address and/or Password.']")
+    public WebElement warningMsg;
+    @FindBy(xpath="//*[text()=' Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.']")
     public WebElement errorMsg;
+    @FindBy(xpath = "//div[contains(@class, 'alert alert-danger')]")
+    public WebElement errorMessage;
 
     public String getPasswordInputType() {
         return loginPassword.getAttribute("type");
@@ -38,6 +41,7 @@ public class LoginPage extends BasePage{
         loginPassword.sendKeys(password);
 
     }
+
 
 
 }
