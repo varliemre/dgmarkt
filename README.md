@@ -10,7 +10,7 @@ Aydın Çakmak
 Betül Akça
 Dilek Tuncay Aba
 Emre Varlı
-Fatma Sungur
+Fatma Sungurr
 Hasan Gültekin
 Şükrü Yüksel
 
